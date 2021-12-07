@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        //primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Exercises'),
     );
@@ -44,6 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.deepOrange[300],
         centerTitle: true,
         title: Text(widget.title),
       actions: [
@@ -60,18 +61,19 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: ExerciseListView(_list),
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.deepOrange[300],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             label: 'Exercises',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_outlined),
+            icon: Icon(Icons.fitness_center_rounded),
             label: 'My Routines',
           ),
         ],
         currentIndex: 1,
-        selectedItemColor: Colors.amber[800],
+         selectedItemColor: Colors.white,
         onTap: (int int) {
 
         }

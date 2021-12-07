@@ -25,7 +25,8 @@ class ExerciseListView extends StatelessWidget {
           // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },
         trailing: IconButton(
-            icon: const Icon(Icons.add),
+            icon: const Icon(Icons.add_circle),
+            color: Colors.pink[300],
             onPressed: () {
               // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
             }),
