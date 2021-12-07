@@ -20,6 +20,7 @@ class ExerciseListView extends StatelessWidget {
   Widget _buildExerciseList(context, Exercises exercises) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(exercises.name),
+        subtitle: Text(exercises.target),
         onTap: () {
           // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },
