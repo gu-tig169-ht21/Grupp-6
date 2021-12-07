@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Exercises'),
     );
   }
 }
@@ -44,18 +44,30 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(widget.title),
+      actions: [
+          PopupMenuButton(
+              onSelected: (int) {
+              },
+              itemBuilder: (context) => [
+                    const PopupMenuItem(child: Text('UpperBody'), value: 'UpperBody'),
+                    const PopupMenuItem(child: Text('LowerBody'), value: 'LowerBody'),
+                    const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
+                    const PopupMenuItem(child: Text('Back'), value: 'Back'),
+                  ]),
+        ], 
       ),
       body: ExerciseListView(_list),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
+            icon: Icon(Icons.list),
+            label: 'Exercises',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.fitness_center_outlined),
+            label: 'My Routines',
           ),
         ],
         currentIndex: 1,
