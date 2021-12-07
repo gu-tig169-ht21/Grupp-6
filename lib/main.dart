@@ -31,26 +31,22 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  final List<Exercises> _list = [
+    Exercises(
+        bodyPart: "waist",
+        equipment: "body weight",
+        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
+        id: "0002",
+        name: "name",
+        target: "target")
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: ExerciseListView(Exercises),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
+      body: ExerciseListView(_list),
     );
   }
 }
