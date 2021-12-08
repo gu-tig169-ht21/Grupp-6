@@ -1,0 +1,1 @@
+Fråga 1. GIFs som ska hämtas från webben. Hur? Använt kommando $flutter run -d chrome --web-renderer html. Räcker det?

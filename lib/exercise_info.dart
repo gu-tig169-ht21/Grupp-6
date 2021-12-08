@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'apiModel.dart';
 
 class ExerInfo extends StatelessWidget {
- final Exer exer;
+  final Exer exer;
 
   ExerInfo(this.exer);
   //this.equipment = exer.equipment;
@@ -20,35 +20,26 @@ class ExerInfo extends StatelessWidget {
         title: Text(exer.name),
         //??'Jag är null'),
       ),
-      body: Center (
-        child: Column (
-          children: 
-            <Widget>[
-          //gifURL
-          Text(exer.gifUrl),
-          //Text(exer.target),
-          //Text(exer.equipment),
-          Wrap(
-            alignment: WrapAlignment.end,
-            spacing: 10.0,
-            runSpacing: 20.0,
-            children: [
-         _infoBox(exer.target),
-         _infoBox2(exer.equipment),
-          
-          
-          //Navigator.pop(context, Exer(equipment: '', bodyPart: '', gifUrl: '', id: '', name: '', target: ''))
-            
-            ],
-          ),
-            ],
-          ),
-          ),
-        );
-        
-    
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Image(
+                image: NetworkImage(
+                    'http://d205bpvrqc9yn1.cloudfront.net/0002.gif')),
+            Wrap(
+              alignment: WrapAlignment.end,
+              spacing: 10.0,
+              runSpacing: 20.0,
+              children: [
+                _infoBox(exer.target),
+                _infoBox2(exer.equipment),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
-
 
   Widget _infoBox(target) {
     return Container(
@@ -60,19 +51,18 @@ class ExerInfo extends StatelessWidget {
         color: Colors.pink[300],
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
-      child: Text(exer.target,
+      child: Text(
+        exer.target,
         style: TextStyle(fontSize: 20, color: Colors.white),
         textAlign: TextAlign.center,
       ),
       //Align(alignment: ,)
-
-
     );
   }
 
   Widget _infoBox2(equipment) {
     return Container(
-          width: 200,
+      width: 200,
       height: 100,
       padding: EdgeInsets.all(12),
       alignment: Alignment.center,
@@ -80,13 +70,11 @@ class ExerInfo extends StatelessWidget {
         color: Colors.pink[300],
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
-      child: Text(exer.equipment,
+      child: Text(
+        exer.equipment,
         style: TextStyle(fontSize: 20, color: Colors.white),
         textAlign: TextAlign.center,
       ),
     );
   }
-
-
-  
 }
