@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/apiModel.dart';
+import 'package:provider/provider.dart';
 import 'list_view.dart';
+import 'model.dart';
 
 void main() {
-  runApp(const MyApp());
+  var state = MyState();
+   runApp(
+      ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         //primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Exercises'),
+      home: const MyHomePage(title: 'Exer'),
     );
   }
 }
@@ -31,15 +35,15 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Exercises> _list = [
-    Exercises(
+  /*final List<Exer> _list = [
+    Exer(
         bodyPart: "waist",
         equipment: "body weight",
         gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
         id: "0002",
         name: "name",
         target: "target")
-  ];
+  ];*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,20 +63,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   ]),
         ], 
       ),
-      body: ExerciseListView(_list),
+      //body: ExerciseListView(_list),
+      body: Consumer<MyState>(
+        builder: (context, state, child) =>
+        ExerciseListView(state.list),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.deepOrange[300],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
-            label: 'Exercises',
+            label: 'Exer',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center_rounded),
             label: 'My Routines',
           ),
         ],
-        currentIndex: 1,
+        currentIndex: 0,
          selectedItemColor: Colors.white,
         onTap: (int int) {
 

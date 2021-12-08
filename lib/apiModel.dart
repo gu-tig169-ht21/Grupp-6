@@ -1,6 +1,6 @@
 // To parse this JSON data, do
 //
-//     final Exercises = ExercisesFromJson(jsonString);
+//     final Exer = ExercisesFromJson(jsonString);
 
 // ignore_for_file: file_names
 
@@ -8,16 +8,16 @@ import 'dart:convert';
 
 import 'package:my_first_app/list_view.dart';
 
-/*List<Exercises> ExercisesFromJson(String str) =>
-    List<Exercises>.from(json.decode(str).map((x) => Exercises.fromJson(x)));
+/*List<Exer> ExercisesFromJson(String str) =>
+    List<Exer>.from(json.decode(str).map((x) => Exer.fromJson(x)));
 
-String ExercisesToJson(List<Exercises> data) =>
+String ExercisesToJson(List<Exer> data) =>
     json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
 
 */
 
-class Exercises {
-  Exercises({
+class Exer {
+  Exer({
     required this.bodyPart,
     required this.equipment,
     required this.gifUrl,
@@ -40,7 +40,7 @@ class Exercises {
   String name;
   Target target; */
 
-  /*factory Exercises.fromJson(Map<String, dynamic> json) => Exercises(
+  /*factory Exer.fromJson(Map<String, dynamic> json) => Exer(
         bodyPart: json["bodyPart"] == null
             ? null
             : bodyPartValues.map[json["bodyPart"]],
