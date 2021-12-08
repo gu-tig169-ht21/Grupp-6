@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/apiModel.dart';
 import 'package:provider/provider.dart';
+import 'bottomnavbar.dart';
 import 'list_view.dart';
 import 'model.dart';
 
 void main() {
   var state = MyState();
-   runApp(
+  runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }
 
@@ -18,8 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        //primarySwatch: Colors.blue,
-      ),
+          //primarySwatch: Colors.blue,
+          ),
       home: const MyHomePage(title: 'Exer'),
     );
   }
@@ -47,45 +48,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange[300],
-        centerTitle: true,
-        title: Text(widget.title),
-      actions: [
-          PopupMenuButton(
-              onSelected: (int) {
-              },
-              itemBuilder: (context) => [
-                    const PopupMenuItem(child: Text('UpperBody'), value: 'UpperBody'),
-                    const PopupMenuItem(child: Text('LowerBody'), value: 'LowerBody'),
-                    const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
-                    const PopupMenuItem(child: Text('Back'), value: 'Back'),
-                  ]),
-        ], 
-      ),
-      //body: ExerciseListView(_list),
-      body: Consumer<MyState>(
-        builder: (context, state, child) =>
-        ExerciseListView(state.list),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepOrange[300],
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Exer',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_rounded),
-            label: 'My Routines',
-          ),
-        ],
-        currentIndex: 0,
-         selectedItemColor: Colors.white,
-        onTap: (int int) {
-
-        }
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange[300],
+          centerTitle: true,
+          title: Text(widget.title),
+          actions: [
+            PopupMenuButton(
+                onSelected: (int) {},
+                itemBuilder: (context) => [
+                      const PopupMenuItem(
+                          child: Text('UpperBody'), value: 'UpperBody'),
+                      const PopupMenuItem(
+                          child: Text('LowerBody'), value: 'LowerBody'),
+                      const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
+                      const PopupMenuItem(child: Text('Back'), value: 'Back'),
+                    ]),
+          ],
+        ),
+        //body: ExerciseListView(_list),
+        body: Consumer<MyState>(
+          builder: (context, state, child) => ExerciseListView(state.list),
+        ),
+        bottomNavigationBar: BottomNavBar());
   }
 }
