@@ -24,7 +24,10 @@ class _RoutineListViewState extends State<RoutineListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+          backgroundColor: Colors.deepOrange[300],
+          centerTitle: true,
+          title: const Text('Ass and abs')),
       body: ReorderableListView(
         children: List.generate(list.length, (index) {
           return ListTile(
