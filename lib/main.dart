@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/apiModel.dart';
+import 'package:my_first_app/routine_view.dart';
+import 'bottomnav.dart';
 import 'list_view.dart';
+
+//  export PATH="$PATH:/Users/fina/Kod/Flutter/bin"
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        //primarySwatch: Colors.blue,
-      ),
+          //primarySwatch: Colors.blue,
+          ),
       home: const MyHomePage(title: 'Exercises'),
     );
   }
@@ -40,44 +49,28 @@ class _MyHomePageState extends State<MyHomePage> {
         name: "name",
         target: "target")
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange[300],
-        centerTitle: true,
-        title: Text(widget.title),
-      actions: [
-          PopupMenuButton(
-              onSelected: (int) {
-              },
-              itemBuilder: (context) => [
-                    const PopupMenuItem(child: Text('UpperBody'), value: 'UpperBody'),
-                    const PopupMenuItem(child: Text('LowerBody'), value: 'LowerBody'),
-                    const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
-                    const PopupMenuItem(child: Text('Back'), value: 'Back'),
-                  ]),
-        ], 
-      ),
-      body: ExerciseListView(_list),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepOrange[300],
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list),
-            label: 'Exercises',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_rounded),
-            label: 'My Routines',
-          ),
-        ],
-        currentIndex: 1,
-         selectedItemColor: Colors.white,
-        onTap: (int int) {
-
-        }
-      ),
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange[300],
+          centerTitle: true,
+          title: Text(widget.title),
+          actions: [
+            PopupMenuButton(
+                onSelected: (int) {},
+                itemBuilder: (context) => [
+                      const PopupMenuItem(
+                          child: Text('UpperBody'), value: 'UpperBody'),
+                      const PopupMenuItem(
+                          child: Text('LowerBody'), value: 'LowerBody'),
+                      const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
+                      const PopupMenuItem(child: Text('Back'), value: 'Back'),
+                    ]),
+          ],
+        ),
+        body: ExerciseListView(_list),
+        bottomNavigationBar: const BottomNavBar());
   }
 }
