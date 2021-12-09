@@ -70,6 +70,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Consumer<MyState>(
           builder: (context, state, child) => ExerciseListView(state.list),
         ),
-        bottomNavigationBar: BottomNavBar());
+        bottomNavigationBar: const BottomNavBar());
   }
+  
 }
