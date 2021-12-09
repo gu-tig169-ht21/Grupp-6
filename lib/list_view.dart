@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'apiModel.dart';
 import 'exercise_info.dart';
 import 'main.dart';
@@ -14,14 +13,12 @@ class ExerciseListView extends StatelessWidget {
   List<Exer> list;
 
   ExerciseListView(this.list);
-  
 
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: list
-            .map((exer) => _buildExerciseList(context, exer))
-            .toList());
+        children:
+            list.map((exer) => _buildExerciseList(context, exer)).toList());
   }
 
   Widget _buildExerciseList(context, Exer exer) => ListTile(
@@ -30,45 +27,45 @@ class ExerciseListView extends StatelessWidget {
         subtitle: Text(exer.target),
         onTap: () async {
           var newInfo = await Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (context) =>  ExerInfo(Exer(
-                    bodyPart: exer.bodyPart, 
-                    equipment: exer.equipment, 
-                    gifUrl: exer.gifUrl, 
-                    id: exer.id, 
-                    name: exer.name, 
-                    target: exer.target
-                    ),))); 
-                    //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
-                    if (newInfo != null) {
-                      Provider.of<MyState>(context, listen:false).showInfo(newInfo);
-                    }
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ExerInfo(
+                        Exer(
+                            bodyPart: exer.bodyPart,
+                            equipment: exer.equipment,
+                            gifUrl: exer.gifUrl,
+                            id: exer.id,
+                            name: exer.name,
+                            target: exer.target),
+                      )));
+          //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
+          if (newInfo != null) {
+            Provider.of<MyState>(context, listen: false).showInfo(newInfo);
+          }
           // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },
         trailing: IconButton(
-            icon: const Icon(Icons.add_circle),
-            color: Colors.pink[300],
-            onPressed: () async {
-               var newRoutine = await Navigator.push(
+          icon: const Icon(Icons.add_circle),
+          color: Colors.pink[300],
+          onPressed: () {
+            Addtasks(
               context,
-              MaterialPageRoute(
-                  builder: (context) => AddTask(MyRoutines(
-                        title: '',
-                      ))));
-                    if (newRoutine != null) {
-                      Provider.of<MyState>(context, listen: false).newRoutine(newRoutine);
-                    }
-                      
+              MyRoutines(
+                title: '',
+              ),
+            );
+            /*  var newRoutine = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => AddTask(MyRoutines(
+                          title: '',
+                        )))); */
+            /*    if (newRoutine != null) {
+              Provider.of<MyState>(context, listen: false)
+                  .newRoutine(newRoutine);
+            } */
 
-              showModalBottomSheet(
-                    context: context,
-                    builder: (BuildContext context) => AddTask(newRoutine),
-                    backgroundColor: Colors.white,
-
-
-
-                      /*return Wrap(
+            /*return Wrap(
                         children: [
                           ListTile(
                           trailing: IconButton(
@@ -82,25 +79,14 @@ class ExerciseListView extends StatelessWidget {
                       
                           ),
                         ]*/
-                    
-                  );
-                },
-              
-            
-            
-                
+          },
 
-
-                  
-              // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
-              ),
-        
-            
+          // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
+        ),
       );
 }
 
 class AddTask extends StatefulWidget {
-
   final MyRoutines routine;
 
   AddTask(this.routine);
@@ -117,10 +103,9 @@ class AddTaskState extends State<AddTask> {
   late TextEditingController textEditingController = TextEditingController();
 
   AddTaskState(MyRoutines routine) {
-
     this.title = routine.title;
 
-  textEditingController.addListener(() {
+    textEditingController.addListener(() {
       setState(() {
         title = textEditingController.text;
       });
@@ -129,36 +114,47 @@ class AddTaskState extends State<AddTask> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
-      child: Wrap(
+    return /* Material(
+      child:  */
+        Container(
+      height: 300,
+      color: Colors.red,
+      child: Column(
         //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           TextField(
             controller: textEditingController,
             decoration: const InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(width: 3.0),
-            ),
-            labelText:
-            'Add Routine',
-            //textAlign: TextAlign.center,
-            //style: TextStyle(
-             // color: Colors.pink[300]
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(width: 3.0),
+              ),
+              labelText: 'Add Routine',
+              //textAlign: TextAlign.center,
+              //style: TextStyle(
+              // color: Colors.pink[300]
             ),
           ),
           ElevatedButton(
-          child: const Text('+ ADD'),
-          onPressed: () {
-            //if (_formKey.currentState!.validate()) {
-              Navigator.pop(context, MyRoutines(title: title));
-          }
-          ),
-
+              child: const Text('+ ADD'),
+              onPressed: () {
+                //if (_formKey.currentState!.validate()) {
+                Navigator.pop(context, MyRoutines(title: title));
+              }),
         ],
-        
       ),
     );
   }
 }
 
+class Addtasks {
+  final MyRoutines routine;
+  final context;
+  Addtasks(this.context, this.routine);
+  function() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      builder: (BuildContext context) => AddTask(routine),
+    );
+  }
+}
