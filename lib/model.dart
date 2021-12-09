@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'list_view.dart';
 import 'main.dart';
 import 'apiModel.dart';
+import 'Api.dart';
 
 class MyState extends ChangeNotifier {
    List<Exer> _list = [
@@ -23,6 +24,12 @@ class MyState extends ChangeNotifier {
   ];
 
   List<Exer> get list => _list;
+
+  Future getList() async {
+    List<Exer> list = await Api.getInfo();
+    _list = list;
+    notifyListeners();
+  }
 
   void showInfo(Exer exer) {
   _list = list;

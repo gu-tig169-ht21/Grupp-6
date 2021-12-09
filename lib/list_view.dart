@@ -30,12 +30,12 @@ class ExerciseListView extends StatelessWidget {
                 context, 
                 MaterialPageRoute(
                   builder: (context) =>  ExerInfo(Exer(
-                    bodyPart: 'Leg', 
-                    equipment: 'Roller', 
-                    gifUrl: 'www.se', 
-                    id: '2', 
-                    name: 'korv', 
-                    target: 'Framsida lår'
+                    bodyPart: '', 
+                    equipment: '', 
+                    gifUrl: '', 
+                    id: '', 
+                    name: '', 
+                    target: ''
                     ),))); 
                     //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
                     if (newInfo != null) {
