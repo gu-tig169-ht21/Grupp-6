@@ -56,12 +56,14 @@ class ExerciseListView extends StatelessWidget {
                   builder: (context) => AddTask(MyRoutines(
                         title: '',
                       ))));
-                    if (newRoutine != null) {}
+                    if (newRoutine != null) {
+                      Provider.of<MyState>(context, listen: false).newRoutine(newRoutine);
+                    }
                       
 
               showModalBottomSheet(
                     context: context,
-                    builder: (BuildContext context) => AddTask(routine),
+                    builder: (BuildContext context) => AddTask(newRoutine),
                     backgroundColor: Colors.white,
 
 
@@ -129,10 +131,10 @@ class AddTaskState extends State<AddTask> {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: Wrap(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          TextFormField(
+          TextField(
             controller: textEditingController,
             decoration: const InputDecoration(
             enabledBorder: OutlineInputBorder(

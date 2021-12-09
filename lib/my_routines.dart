@@ -2,6 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'model.dart';
 
 //Väntar med att göra denna vyn tills vi gjort overlay
 
@@ -12,6 +13,7 @@ class MyRoutines extends StatelessWidget {
   });
 
   String title;
+
 
   
   @override

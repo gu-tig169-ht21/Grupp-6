@@ -7,6 +7,7 @@ List<Exercises> _list = [Exercises(bodyPart: 'waist', equipment: equipment, gifU
 List<Exercises> get list => _list; */
 
 import 'package:flutter/cupertino.dart';
+import 'package:my_first_app/my_routines.dart';
 import 'list_view.dart';
 import 'main.dart';
 import 'apiModel.dart';
@@ -25,6 +26,9 @@ class MyState extends ChangeNotifier {
 
   List<Exer> get list => _list;
 
+  List<MyRoutines> _list2 = [];
+  List<MyRoutines> get list2 => _list2;
+
   Future getList() async {
     List<Exer> list = await Api.getInfo();
     _list = list;
@@ -34,6 +38,11 @@ class MyState extends ChangeNotifier {
   void showInfo(Exer exer) {
   _list = list;
   notifyListeners();
+  }
+
+  void newRoutine(MyRoutines routine) {
+    _list2.add(routine);
+    notifyListeners();
   }
  
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/apiModel.dart';
+import 'package:my_first_app/my_routines.dart';
 import 'package:provider/provider.dart';
 import 'bottomnavbar.dart';
 import 'list_view.dart';
@@ -69,6 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
         //body: ExerciseListView(_list),
         body: Consumer<MyState>(
           builder: (context, state, child) => ExerciseListView(state.list),
+        ),
+        Consumer<MyState>(
+          builder: (context, state, child) => MyRoutines(state.list2),
         ),
         bottomNavigationBar: const BottomNavBar());
   }
