@@ -17,6 +17,7 @@ class _RoutineListViewState extends State<RoutineListView> {
   final List<RoutineItem> list = [
     RoutineItem(title: 'Back and abs', exers: 'Crunches'),
     RoutineItem(title: 'Leg Day', exers: 'Squats'),
+    RoutineItem(title: 'Bla', exers: 'Blabla')
   ];
 
   _updateRoutineExercises(int oldIndex, int newIndex) {
@@ -33,11 +34,12 @@ class _RoutineListViewState extends State<RoutineListView> {
       appBar: AppBar(
           backgroundColor: Colors.deepOrange[300],
           centerTitle: true,
-          title: const Text('Ass and abs')),
+          title: const Text('Routine')),
       body: ReorderableListView(
+        buildDefaultDragHandles: true,
         children: List.generate(list.length, (index) {
           return ListTile(
-            key: ValueKey("value$index"),
+            key: ValueKey("$index"),
             title: Text(list[index].exers),
           );
         }),
@@ -47,7 +49,6 @@ class _RoutineListViewState extends State<RoutineListView> {
           });
         },
       ),
-      bottomNavigationBar: const BottomNavBar(),
     );
   }
 

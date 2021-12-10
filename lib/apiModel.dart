@@ -6,10 +6,9 @@
 
 import 'dart:convert';
 
-import 'package:my_first_app/list_view.dart';
+import 'package:my_first_app/exercise_list_view.dart';
 
-
-  /*factory Exer.fromJson(Map<String, dynamic> json) => Exer(
+/*factory Exer.fromJson(Map<String, dynamic> json) => Exer(
     bodyPart: json['bodyPart'],
     equipment: json['equipment'],
     gifUrl: json['gifUrl'],
@@ -18,7 +17,7 @@ import 'package:my_first_app/list_view.dart';
     target: json['target'],
   );*/
 
-  List<Exer> ExerFromJson(String str) =>
+List<Exer> ExerFromJson(String str) =>
     List<Exer>.from(json.decode(str).map((x) => Exer.fromJson(x)));
 
 String ExerToJson(List<Exer> data) =>

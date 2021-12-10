@@ -9,7 +9,7 @@ List<Exercises> get list => _list; */
 import 'package:flutter/cupertino.dart';
 import 'package:my_first_app/api_routine_model.dart';
 import 'package:my_first_app/routine_view.dart';
-import 'list_view.dart';
+import 'exercise_list_view.dart';
 import 'main.dart';
 import 'apiModel.dart';
 import 'Api.dart';
@@ -30,7 +30,7 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Routines> _routineList = [];
+/*   List<Routines> _routineList = [];
 
   List<Routines> get routineList => _routineList;
 
@@ -38,6 +38,7 @@ class MyState extends ChangeNotifier {
     List<Routines> routinelist = await Api.getRoutines();
     _routineList = routinelist;
     print(_routineList);
-    notifyListeners();
-  }
+    notifyListeners(); 
+    }*/
+
 }

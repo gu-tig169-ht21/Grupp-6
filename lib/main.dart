@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_first_app/apiModel.dart';
 import 'package:provider/provider.dart';
 import 'bottomnavbar.dart';
-import 'list_view.dart';
+import 'exercise_list_view.dart';
 import 'model.dart';
 import 'my_routines.dart';
 import 'routine_view.dart';
