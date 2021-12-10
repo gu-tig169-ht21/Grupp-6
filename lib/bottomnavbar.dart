@@ -3,6 +3,7 @@ import 'package:my_first_app/routine_view.dart';
 import 'my_routines.dart';
 import 'api_routine_model.dart';
 import 'model.dart';
+import 'package:provider/provider.dart';
 
 import 'main.dart';
 
@@ -42,6 +43,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           if (mounted) {
             setState(() {
               _selectedIndex = index;
+              notifyListeners();
               switch (_selectedIndex) {
                 case 0:
                   _navigateToExercises(context);

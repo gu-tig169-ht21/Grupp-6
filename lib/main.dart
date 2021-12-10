@@ -10,7 +10,6 @@ import 'routine_view.dart';
 void main() {
   var state = MyState();
   state.getList();
-  state.getRoutineList();
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }
@@ -62,10 +61,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         //body: ExerciseListView(_list),
         body: Consumer<MyState>(
-            builder: (context, state, child) => ExerciseListView(state.list),
-            child: Consumer<MyState>(
+            builder: (context, state, child) => ExerciseListView(state.list)),
+        /* child: */ /* Consumer<MyState>(
                 builder: (context, state, child) =>
-                    MyRoutines(routineList: state.routineList))),
+                    MyRoutines(routineList: state.routineList)) */
         bottomNavigationBar: BottomNavBar());
   }
 }

@@ -37,6 +37,7 @@ class MyState extends ChangeNotifier {
   Future getRoutineList() async {
     List<Routines> routinelist = await Api.getRoutines();
     _routineList = routinelist;
+    print(_routineList);
     notifyListeners();
   }
 }
