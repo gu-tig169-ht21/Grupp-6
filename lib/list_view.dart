@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'apiModel.dart';
 import 'exercise_info.dart';
 import 'main.dart';
@@ -16,9 +15,8 @@ class ExerciseListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-        children: list
-            .map((exer) => _buildExerciseList(context, exer))
-            .toList());
+        children:
+            list.map((exer) => _buildExerciseList(context, exer)).toList());
   }
 
   Widget _buildExerciseList(context, Exer exer) => ListTile(
@@ -27,36 +25,29 @@ class ExerciseListView extends StatelessWidget {
         subtitle: Text(exer.target),
         onTap: () async {
           var newInfo = await Navigator.push(
-                context, 
-                MaterialPageRoute(
-                  builder: (context) =>  ExerInfo(Exer(
-                    bodyPart: '', 
-                    equipment: '', 
-                    gifUrl: '', 
-                    id: '', 
-                    name: '', 
-                    target: ''
-                    ),))); 
-                    //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
-                    if (newInfo != null) {
-                      Provider.of<MyState>(context, listen:false).showInfo(newInfo);
-                    }
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ExerInfo(
+                        Exer(
+                            bodyPart: '',
+                            equipment: '',
+                            gifUrl: '',
+                            id: '',
+                            name: '',
+                            target: ''),
+                      )));
+          //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
+          if (newInfo != null) {
+            Provider.of<MyState>(context, listen: false).showInfo(newInfo);
+          }
           // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },
         trailing: IconButton(
             icon: const Icon(Icons.add_circle),
             color: Colors.pink[300],
-            onPressed: ()   {
-              
-            }
-            
-                
+            onPressed: () {}
 
-
-                  
-              // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
-              ),
-        
-            
+            // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
+            ),
       );
 }
