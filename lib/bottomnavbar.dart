@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/routine_view.dart';
+import 'my_routines.dart';
+import 'api_routine_model.dart';
+import 'model.dart';
 
 import 'main.dart';
 
@@ -62,7 +65,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
 
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => RoutineListView()));
+        context, MaterialPageRoute(builder: (context) => MyRoutines()));
   }
 
   _navigateToExercises(context) {
