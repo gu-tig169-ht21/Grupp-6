@@ -4,10 +4,13 @@ import 'package:provider/provider.dart';
 import 'bottomnavbar.dart';
 import 'list_view.dart';
 import 'model.dart';
+import 'my_routines.dart';
+import 'routine_view.dart';
 
 void main() {
   var state = MyState();
-   state.getList();
+  state.getList();
+  state.getRoutineList();
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
 }
@@ -22,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           //primarySwatch: Colors.blue,
           ),
-      home: const MyHomePage(title: 'Exer'),
+      home: const MyHomePage(title: 'Exercises'),
     );
   }
 }
@@ -37,15 +40,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  /*final List<Exer> _list = [
-    Exer(
-        bodyPart: "waist",
-        equipment: "body weight",
-        gifUrl: "http://d205bpvrqc9yn1.cloudfront.net/0002.gif",
-        id: "0002",
-        name: "name",
-        target: "target")
-  ];*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,8 +62,10 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         //body: ExerciseListView(_list),
         body: Consumer<MyState>(
-          builder: (context, state, child) => ExerciseListView(state.list),
-        ),
+            builder: (context, state, child) => ExerciseListView(state.list),
+            child: Consumer<MyState>(
+                builder: (context, state, child) =>
+                    MyRoutines(routineList: state.routineList))),
         bottomNavigationBar: BottomNavBar());
   }
 }
