@@ -43,7 +43,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           if (mounted) {
             setState(() {
               _selectedIndex = index;
-              notifyListeners();
               switch (_selectedIndex) {
                 case 0:
                   _navigateToExercises(context);
