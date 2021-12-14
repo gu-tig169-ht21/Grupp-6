@@ -12,6 +12,8 @@ void main() {
   state.getList();
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
+  //MultiProvider
+  //Page route transistions
 }
 
 class MyApp extends StatelessWidget {
