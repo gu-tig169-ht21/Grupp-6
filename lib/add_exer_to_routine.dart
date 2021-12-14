@@ -1,20 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_first_app/Api.dart';
-import 'package:my_first_app/bottomnavbar.dart';
-import 'package:my_first_app/spec_routine.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'model.dart';
-import 'api_routine_model.dart';
 
-class MyRoutines extends StatelessWidget {
+import 'apiModel.dart';
+import 'api_routine_model.dart';
+import 'bottomnavbar.dart';
+import 'model.dart';
+
+class AddExer extends StatelessWidget {
+  final Exer exer;
+  AddExer(this.exer);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.deepOrange[300],
             centerTitle: true,
-            title: const Text('My Routines')),
+            title: const Text('Add to...')),
         body: _getRoutines(),
         bottomNavigationBar: const BottomNavBar());
   }
@@ -22,14 +25,8 @@ class MyRoutines extends StatelessWidget {
   Widget _buildRoutineList(context, Routines routines) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(routines.title),
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SpecRoutine()));
-        },
-        trailing: IconButton(
-            icon: const Icon(Icons.add_circle),
-            color: Colors.pink[300],
-            onPressed: () {}),
+        onTap: () {},
+        //Posta övning till rutin.
       );
 
   Widget _getRoutines() {

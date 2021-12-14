@@ -1,3 +1,4 @@
+import 'package:my_first_app/add_exer_to_routine.dart';
 import 'package:my_first_app/my_routines.dart';
 
 import 'apiModel.dart';
@@ -45,6 +46,23 @@ class ExerciseListView extends StatelessWidget {
         trailing: IconButton(
             icon: const Icon(Icons.add_circle),
             color: Colors.pink[300],
-            onPressed: () {}),
+            onPressed: () async {
+              var pickedExer = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => AddExer(
+                            Exer(
+                                bodyPart: exer.bodyPart,
+                                equipment: exer.equipment,
+                                gifUrl: exer.gifUrl,
+                                id: exer.id,
+                                name: exer.name,
+                                target: exer.target),
+                          )));
+              if (pickedExer != null) {
+                Provider.of<MyState>(context, listen: false)
+                    .showExerInfo(pickedExer);
+              }
+            }),
       );
 }
