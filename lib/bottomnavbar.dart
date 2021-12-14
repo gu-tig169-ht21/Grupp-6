@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/routine_view.dart';
+import 'package:my_first_app/spec_routine.dart';
 import 'my_routines.dart';
 import 'api_routine_model.dart';
 import 'model.dart';

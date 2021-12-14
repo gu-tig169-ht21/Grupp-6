@@ -5,7 +5,7 @@ import 'bottomnavbar.dart';
 import 'exercise_list_view.dart';
 import 'model.dart';
 import 'my_routines.dart';
-import 'routine_view.dart';
+import 'spec_routine.dart';
 
 void main() {
   var state = MyState();

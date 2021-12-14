@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_first_app/api_routine_model.dart';
-import 'package:my_first_app/routine_view.dart';
+import 'package:my_first_app/spec_routine.dart';
 import 'exercise_list_view.dart';
 import 'main.dart';
 import 'apiModel.dart';
