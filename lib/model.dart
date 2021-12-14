@@ -27,6 +27,11 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void removeRoutine(Routines routines) {
+    _routineList.remove(routines);
+    notifyListeners();
+  }
+
   List<Routines> _routineList = [];
 
   List<Routines> get routineList => _routineList;

@@ -40,7 +40,10 @@ class MyRoutines extends StatelessWidget {
         trailing: IconButton(
             icon: const Icon(Icons.delete),
             color: Colors.pink[300],
-            onPressed: () {}),
+            onPressed: () {
+              Provider.of<MyState>(context, listen: false)
+                  .removeRoutine(routines); //ta bort
+            }),
       );
 
   Widget _getRoutines() {
