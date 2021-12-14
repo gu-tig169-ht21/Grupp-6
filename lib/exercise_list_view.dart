@@ -31,25 +31,20 @@ class ExerciseListView extends StatelessWidget {
               MaterialPageRoute(
                   builder: (context) => ExerInfo(
                         Exer(
-                            bodyPart: '',
-                            equipment: '',
-                            gifUrl: '',
-                            id: '',
-                            name: '',
-                            target: ''),
+                            bodyPart: exer.bodyPart,
+                            equipment: exer.equipment,
+                            gifUrl: exer.gifUrl,
+                            id: exer.id,
+                            name: exer.name,
+                            target: exer.target),
                       )));
-          //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
           if (newInfo != null) {
             Provider.of<MyState>(context, listen: false).showExerInfo(newInfo);
           }
-          // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },
         trailing: IconButton(
             icon: const Icon(Icons.add_circle),
             color: Colors.pink[300],
-            onPressed: () {}
-
-            // Här kommmer vi behöva ha en navigator och eeeeennnn, bara en navigator.
-            ),
+            onPressed: () {}),
       );
 }

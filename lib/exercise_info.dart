@@ -7,9 +7,6 @@ class ExerInfo extends StatelessWidget {
   final Exer exer;
 
   ExerInfo(this.exer);
-  //this.equipment = exer.equipment;
-
-  //const ExerInfo({ Key? key, required this.exer }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,14 +15,11 @@ class ExerInfo extends StatelessWidget {
         backgroundColor: Colors.deepOrange[300],
         centerTitle: true,
         title: Text(exer.name),
-        //??'Jag är null'),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Image(
-                image: NetworkImage(
-                    'http://d205bpvrqc9yn1.cloudfront.net/0002.gif')),
+            Image(image: NetworkImage(exer.gifUrl)),
             Wrap(
               alignment: WrapAlignment.end,
               spacing: 10.0,
@@ -43,21 +37,28 @@ class ExerInfo extends StatelessWidget {
 
   Widget _infoBox(target) {
     return Container(
-      width: 200,
-      height: 100,
-      padding: EdgeInsets.all(12),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.pink[300],
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      ),
-      child: Text(
-        exer.target,
-        style: TextStyle(fontSize: 20, color: Colors.white),
-        textAlign: TextAlign.center,
-      ),
-      //Align(alignment: ,)
-    );
+        width: 200,
+        height: 100,
+        padding: EdgeInsets.all(12),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.pink[300],
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
+        child: Column(
+          children: [
+            const Text(
+              'Target muscle',
+              style: TextStyle(fontSize: 20, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              exer.target,
+              style: const TextStyle(fontSize: 20, color: Colors.white),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ));
   }
 
   Widget _infoBox2(equipment) {

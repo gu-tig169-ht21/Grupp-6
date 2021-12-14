@@ -1,3 +1,10 @@
-Fråga 1. GIFs som ska hämtas från webben. Hur? Använt kommando $flutter run -d chrome --web-renderer html. Räcker det?
-Fråga 2. Byta färg på ikonen vid BottomNav.
-Fråga 3. Overlay? Hur gör man det smidigast? :)
+Fråga 1. Filtrering, vill kunna filtrera på kategorider som finns i API. Hur gör man? :)
+Fråga 2. 
+
+
+
+TODO list: 
+ * Filtrera listan med exercises. 
+ * Göra vy "overlay"  (Kunna posta)
+ * Kunna ta bort routines?
+ * Kunna ta bort exercises i specifik routine. 

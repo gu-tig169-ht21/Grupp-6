@@ -61,12 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
                     ]),
           ],
         ),
-        //body: ExerciseListView(_list),
         body: Consumer<MyState>(
             builder: (context, state, child) => ExerciseListView(state.list)),
-        /* child: */ /* Consumer<MyState>(
-                builder: (context, state, child) =>
-                    MyRoutines(routineList: state.routineList)) */
-        bottomNavigationBar: BottomNavBar());
+        bottomNavigationBar: const BottomNavBar());
   }
 }

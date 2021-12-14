@@ -1,11 +1,3 @@
-/* import 'list_view.dart';
-import 'apiModel.dart';
-
-
-
-List<Exercises> _list = [Exercises(bodyPart: 'waist', equipment: equipment, gifUrl: gifUrl, id: id, name: name, target: target)];
-List<Exercises> get list => _list; */
-
 import 'package:flutter/cupertino.dart';
 import 'package:my_first_app/api_routine_model.dart';
 import 'package:my_first_app/routine_view.dart';

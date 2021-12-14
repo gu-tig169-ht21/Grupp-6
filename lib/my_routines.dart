@@ -1,5 +1,3 @@
-import 'dart:js';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/Api.dart';
@@ -9,13 +7,7 @@ import 'package:provider/provider.dart';
 import 'model.dart';
 import 'api_routine_model.dart';
 
-//Väntar med att göra denna vyn tills vi gjort overlay
-
 class MyRoutines extends StatelessWidget {
-  /* List<Routines> routineList;
-
-  MyRoutines(this.routineList); */
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
