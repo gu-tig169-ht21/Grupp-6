@@ -22,6 +22,11 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
+  void showSpecRoutine(Routines routines) {
+    _routineList = routineList;
+    notifyListeners();
+  }
+
   List<Routines> _routineList = [];
 
   List<Routines> get routineList => _routineList;

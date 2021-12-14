@@ -22,12 +22,23 @@ class MyRoutines extends StatelessWidget {
   Widget _buildRoutineList(context, Routines routines) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(routines.title),
-        onTap: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => SpecRoutine()));
+/*         subtitle: Text(routines.exercises[1]),
+ */
+        onTap: () async {
+          var pickedRoutine = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => SpecRoutine(Routines(
+                      exercises: routines.exercises,
+                      id: routines.id,
+                      title: routines.title))));
+          if (pickedRoutine != null) {
+            Provider.of<MyState>(context, listen: false)
+                .showSpecRoutine(pickedRoutine);
+          }
         },
         trailing: IconButton(
-            icon: const Icon(Icons.add_circle),
+            icon: const Icon(Icons.delete),
             color: Colors.pink[300],
             onPressed: () {}),
       );
