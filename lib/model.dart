@@ -19,26 +19,30 @@ class MyState extends ChangeNotifier {
 
   List<Exer> get list => _list;
 
-  Future getList() async {
+  Future getExerList() async {
     List<Exer> list = await Api.getInfo();
     _list = list;
     notifyListeners();
   }
 
-  void showInfo(Exer exer) {
+  void showExerInfo(Exer exer) {
     _list = list;
     notifyListeners();
   }
 
-/*   List<Routines> _routineList = [];
+  List<Routines> _routineList = [];
 
   List<Routines> get routineList => _routineList;
 
   Future getRoutineList() async {
-    List<Routines> routinelist = await Api.getRoutines();
-    _routineList = routinelist;
+    List<Routines> routineList = await Api.getRoutines();
+    _routineList = routineList;
     print(_routineList);
-    notifyListeners(); 
-    }*/
+    notifyListeners();
+  }
 
+  Future initialize() async {
+    getExerList();
+    getRoutineList();
+  }
 }

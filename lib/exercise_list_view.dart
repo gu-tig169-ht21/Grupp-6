@@ -40,7 +40,7 @@ class ExerciseListView extends StatelessWidget {
                       )));
           //Exer(equipment: '', target: '', bodyPart: '', gifUrl: '', name: '', id: ''),
           if (newInfo != null) {
-            Provider.of<MyState>(context, listen: false).showInfo(newInfo);
+            Provider.of<MyState>(context, listen: false).showExerInfo(newInfo);
           }
           // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
         },

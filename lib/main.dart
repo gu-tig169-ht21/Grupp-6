@@ -9,7 +9,7 @@ import 'routine_view.dart';
 
 void main() {
   var state = MyState();
-  state.getList();
+  state.initialize();
   runApp(
       ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
   //MultiProvider

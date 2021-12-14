@@ -1,8 +1,11 @@
+import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/Api.dart';
 import 'package:my_first_app/bottomnavbar.dart';
 import 'package:my_first_app/routine_view.dart';
+import 'package:provider/provider.dart';
 import 'model.dart';
 import 'api_routine_model.dart';
 
@@ -24,9 +27,9 @@ class MyRoutines extends StatelessWidget {
         bottomNavigationBar: const BottomNavBar());
   }
 
-  Widget _buildRoutineList(context, Routines routine) => ListTile(
+  Widget _buildRoutineList(context, Routines routines) => ListTile(
         contentPadding: const EdgeInsets.all(12),
-        title: Text(routine.title),
+        title: Text(routines.title),
         onTap: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => RoutineListView()));
@@ -38,23 +41,15 @@ class MyRoutines extends StatelessWidget {
       );
 
   Widget _getRoutines() {
-    return FutureBuilder<List<Routines>>(
-        future: Api.getRoutines(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            List<Routines>? routineList = snapshot.data;
+    return Consumer<MyState>(
+        builder: (context, state, child) =>
+            _getRoutineList(context, state.routineList));
+  }
 
-            if (routineList != null) {
-              return ListView(
-                  children: routineList
-                      .map((routine) => _buildRoutineList(context, routine))
-                      .toList());
-            }
-            // _buildRoutineList(context, routine);
-          } else if (snapshot.hasError) {
-            return Text("${snapshot.error}");
-          }
-          return CircularProgressIndicator();
-        });
+  Widget _getRoutineList(context, List<Routines> routineList) {
+    return ListView(
+        children: routineList
+            .map<Widget>((routine) => _buildRoutineList(context, routine))
+            .toList());
   }
 }
