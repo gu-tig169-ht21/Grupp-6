@@ -6,47 +6,30 @@ class SpecRoutine extends StatelessWidget {
   final Routines routines;
   SpecRoutine(this.routines);
 
-  /*  @override
-  State<SpecRoutine> createState() => _RoutineListViewState();
-}
-
-class _RoutineListViewState extends State<SpecRoutine> {
-/*   _updateRoutineExercises(int oldIndex, int newIndex) {
-    if (newIndex > oldIndex) {
-      newIndex -= 1;
-    }
-    final RoutineItem updatedItem = list.removeAt(oldIndex);
-    list.insert(newIndex, updatedItem);
-  } */
- */
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.deepOrange[300],
-          centerTitle: true,
-          title: Text(routines.title)),
-    );
+        appBar: AppBar(
+            backgroundColor: Colors.deepOrange[300],
+            centerTitle: true,
+            title: Text(routines.title)),
+        body: _getExers(routines.exercises));
   }
+
+  Widget _getExers(List<String> exer) {
+    return ListView(
+        children: exer.map((exer) => _buildExerList(exer)).toList());
+  }
+
+  Widget _buildExerList(exer) => ListTile(
+        contentPadding: const EdgeInsets.all(12),
+        title: Text(exer),
+        onTap: () async {
+          /* Om man vill kan man länka vidare till showExerInfo */
+        },
+        trailing: IconButton(
+            icon: const Icon(Icons.delete),
+            color: Colors.pink[300],
+            onPressed: () {}),
+      );
 }
-
-
-
-/* ListView(
-          //Använda ReorderableListView för att kunna sortera om listan
-          children: list
-              .map((routines) => _RoutineListView(context, routines))
-              .toList()),
-      bottomNavigationBar: BottomNavBar(),
-    ); */
-
-  /* Widget _RoutineListView(context, RoutineItem routineList) => ListTile(
-      contentPadding: const EdgeInsets.all(12),
-      title: Text(routineList.title),
-      subtitle: Text(routineList.exers),
-      onTap: () {
-        // ...... *tystnad* vänta, *tysnad*, *Osäkert* Där kommer vi också ha en navigator...
-      },
-      trailing: Icon(Icons.menu, color: Colors.pink[300]));
-}
- */
