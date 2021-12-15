@@ -32,4 +32,16 @@ class Api {
       return Routines.fromJson(data);
     }).toList();
   }
+
+    //delete 
+    static Future deleteRoutine(int routinesId) async {
+    var response =
+        await http.delete(Uri.parse('$API_ROUTINES$routinesId'));
+    var bodyString = response.body;
+    var routineList = jsonDecode(bodyString);
+
+    return routineList.map<Routines>((data) {
+      return Routines.fromJson(data);
+    }).toList();
+  }
 }

@@ -27,8 +27,8 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeRoutine(Routines routines) {
-    _routineList.remove(routines);
+  void removeRoutine(Routines routines) async {
+    _routineList = await Api.deleteRoutine(routines.id);
     notifyListeners();
   }
 
