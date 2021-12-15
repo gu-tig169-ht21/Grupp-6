@@ -32,11 +32,21 @@ class SpecRoutine extends StatelessWidget {
                 icon: const Icon(Icons.delete),
                 color: Colors.pink[300],
                 onPressed: () {
-                  print(routines.exercises[index]);
-                  /*  Provider.of<MyState>(context, listen: false).updateRoutine(
-                  routines.id, routines.title, routines.exercises); */
+                  changeRoutine(routines, index, routines.exercises[index]);
+                  /* Provider.of<MyState>(context, listen: false).updateRoutine(
+                      routines.id,
+                      routines.title,
+                      routines.exercises,
+                      routines.exercises[index]); */
                 }),
           );
         });
+  }
+
+  changeRoutine(Routines routine, int index, String choosenExer) {
+    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
+    print(routine.exercises);
+    print(index);
+    print(choosenExer);
   }
 }
