@@ -15,29 +15,28 @@ class SpecRoutine extends StatelessWidget {
             backgroundColor: Colors.deepOrange[300],
             centerTitle: true,
             title: Text(routines.title)),
-        body: _getExers(context, routines.exercises));
+        body: _getExers(context));
   }
 
-  Widget _getExers(context, List<String> exer) {
-    return ListView(
-        children: exer.map((exer) => _buildExerList(context, exer)).toList());
-  }
-
-  Widget _buildExerList(context, exer) => ListTile(
-        contentPadding: const EdgeInsets.all(12),
-        title: Text(exer),
-        onTap: () async {
-          /* Om man vill kan man länka vidare till showExerInfo */
-        },
-        trailing: IconButton(
-            icon: const Icon(Icons.delete),
-            color: Colors.pink[300],
-            onPressed: () {
-              print(routines.id);
-              print(routines.title);
-              print(routines.exercises);
-              /*  Provider.of<MyState>(context, listen: false).updateRoutine(
+  Widget _getExers(context) {
+    return ListView.builder(
+        itemCount: routines.exercises.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            contentPadding: const EdgeInsets.all(12),
+            title: Text(routines.exercises[index]),
+            onTap: () async {
+              /* Om man vill kan man länka vidare till showExerInfo */
+            },
+            trailing: IconButton(
+                icon: const Icon(Icons.delete),
+                color: Colors.pink[300],
+                onPressed: () {
+                  print(routines.exercises[index]);
+                  /*  Provider.of<MyState>(context, listen: false).updateRoutine(
                   routines.id, routines.title, routines.exercises); */
-            }),
-      );
+                }),
+          );
+        });
+  }
 }
