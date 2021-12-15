@@ -28,8 +28,8 @@ class MyState extends ChangeNotifier {
   }
 
   void removeRoutine(Routines routines) async {
-    _routineList = await Api.deleteRoutine(routines.id);
-    notifyListeners();
+    await Api.deleteRoutine(routines.id);
+    await getRoutineList();
   }
 
   List<Routines> _routineList = [];
@@ -39,12 +39,11 @@ class MyState extends ChangeNotifier {
   Future getRoutineList() async {
     List<Routines> routineList = await Api.getRoutines();
     _routineList = routineList;
-    print(_routineList);
     notifyListeners();
   }
 
   Future initialize() async {
-    getExerList();
-    getRoutineList();
+    await getExerList();
+    await getRoutineList();
   }
 }

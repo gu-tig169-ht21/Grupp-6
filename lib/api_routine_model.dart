@@ -1,4 +1,3 @@
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 List<Routines> routinesFromJson(String str) =>
@@ -13,7 +12,7 @@ class Routines {
     required this.title,
     required this.exercises,
   });
-    //Gjorde om id från int till String?
+  //Gjorde om id från int till String?
   int id;
   String title;
   List<String> exercises;
