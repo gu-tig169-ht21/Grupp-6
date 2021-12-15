@@ -33,9 +33,31 @@ class Api {
     }).toList();
   }
 
-  //delete
+  //Delete Routine
   static Future deleteRoutine(int routinesId) async {
-    var response = await http.delete(Uri.parse('$API_ROUTINES$routinesId'));
+    await http.delete(Uri.parse('$API_ROUTINES$routinesId'));
     //This function always return a empty {}.
+  }
+
+//Ta bort en övning
+  static Future changeRoutine(
+      int routinesId, String title, List<String> exers) async {
+    //Put
+    await http.put(Uri.parse('$API_ROUTINES$routinesId'),
+        headers: {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        body: jsonEncode({
+          {"Title": title, "Exercises": exers}
+        }));
+    //This function always return a empty {}.
+
+    /* {
+    "Title": "Rutin som ska ändras",
+    "Exercises": [
+        "Ett",
+        "Två Lift"
+        ]
+      } */
   }
 }
