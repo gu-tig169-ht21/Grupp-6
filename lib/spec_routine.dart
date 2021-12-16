@@ -32,12 +32,13 @@ class SpecRoutine extends StatelessWidget {
                 icon: const Icon(Icons.delete),
                 color: Colors.pink[300],
                 onPressed: () {
-                  changeRoutine(routines, index, routines.exercises[index]);
-                  /* Provider.of<MyState>(context, listen: false).updateRoutine(
-                      routines.id,
-                      routines.title,
-                      routines.exercises,
-                      routines.exercises[index]); */
+                  var updatedRoutineList =
+                      changeRoutine(routines, index, routines.exercises[index]);
+                  Provider.of<MyState>(context, listen: false).updateRoutine(
+                    routines.id,
+                    routines.title,
+                    updatedRoutineList,
+                  );
                 }),
           );
         });
@@ -48,5 +49,9 @@ class SpecRoutine extends StatelessWidget {
     print(routine.exercises);
     print(index);
     print(choosenExer);
+    routine.exercises.removeAt(index);
+    print(routine.exercises);
+    List<String> updatedRoutineList = routine.exercises;
+    return updatedRoutineList;
   }
 }
