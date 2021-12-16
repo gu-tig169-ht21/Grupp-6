@@ -10,9 +10,17 @@ import 'bottomnavbar.dart';
 import 'main.dart';
 import 'model.dart';
 
-class AddExer extends StatelessWidget {
+class AddExer extends StatefulWidget {
   final Exer exer;
   AddExer(this.exer);
+
+  @override
+  State<AddExer> createState() => _AddExerState();
+}
+
+class _AddExerState extends State<AddExer> {
+  late final TextEditingController _textFieldController =
+      TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +28,13 @@ class AddExer extends StatelessWidget {
       appBar: AppBar(
           backgroundColor: Colors.deepOrange[300],
           centerTitle: true,
-          title: const Text('Add to...')),
+          title: Text('Add ' + widget.exer.name + ' to...')),
       body: _getRoutines(),
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            addNewRoutineDialog(context);
+          }),
     );
   }
 
@@ -29,12 +42,12 @@ class AddExer extends StatelessWidget {
       contentPadding: const EdgeInsets.all(12),
       title: Text(routine.title),
       onTap: () {
-        var addExer = addExerToRoutine(exer, routine);
+        var addExer = addExerToRoutine(widget.exer, routine);
         Provider.of<MyState>(context, listen: false).updateRoutine(
           routine.id,
           addExer,
         );
-        showAlertDialog(context);
+        successfullyAddedDialog(context);
         //Navigator.pop(context);
       }
 
@@ -54,7 +67,43 @@ class AddExer extends StatelessWidget {
             .toList());
   }
 
-  showAlertDialog(BuildContext context) {
+  addNewRoutineDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("CREATE"),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+    AlertDialog alert = AlertDialog(
+      title: const Text("Create new routine:"),
+      content: TextFormField(
+        onChanged: (value) {
+          print(value);
+        },
+        controller: _textFieldController,
+        decoration: const InputDecoration(hintText: "Name your new routine..."),
+        validator: (title) {
+          if (title == null || title.isEmpty) {
+            return 'Textfield is empty, please try again!';
+          }
+          return null;
+        },
+      ),
+      actions: [
+        okButton,
+      ],
+    );
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  successfullyAddedDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
       child: Text("OK"),
@@ -64,8 +113,6 @@ class AddExer extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => const MyApp()));
       },
     );
-
-    // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       title: const Text("Exercise added successfully!"),
       actions: [
@@ -73,7 +120,6 @@ class AddExer extends StatelessWidget {
       ],
     );
 
-    // show the dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -82,18 +128,15 @@ class AddExer extends StatelessWidget {
     );
   }
 
-  // set up the AlertDialog
+  addExerToRoutine(Exer exer, Routines routine) {
+    routine.exercises.add(exer.name);
+    Routines updatedRoutine = routine;
+    return updatedRoutine;
 
-}
-
-addExerToRoutine(Exer exer, Routines routine) {
-  routine.exercises.add(exer.name);
-  Routines updatedRoutine = routine;
-  return updatedRoutine;
-
-  //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
-  /* routine.exercises.(index);
+    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
+    /* routine.exercises.(index);
     Routines updatedRoutine = routine;
     print(updatedRoutine.exercises);
     return updatedRoutine;*/
+  }
 }
