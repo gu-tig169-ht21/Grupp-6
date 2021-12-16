@@ -1,10 +1,10 @@
-Fråga 1. Filtrering, vill kunna filtrera på kategorider som finns i API. Hur gör man? :)
+Fråga 1. Reloada state i spec_routine. Nu fuskar vi :P
 Fråga 2. 
 
 
 
 TODO list: 
  * Filtrera listan med exercises. 
- * Göra vy "overlay"  (Kunna posta)
- * Kunna ta bort routines?
- * Kunna ta bort exercises i specifik routine. 
+ * Fundera på hur vi kan göra bättre/tydligare UI
+ * Fixa navbar så den byter färg :D
+ * Sökbar

@@ -17,32 +17,28 @@ class AddExer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Colors.deepOrange[300],
-            centerTitle: true,
-            title: const Text('Add to...')),
-        body: _getRoutines(),
-        );
+      appBar: AppBar(
+          backgroundColor: Colors.deepOrange[300],
+          centerTitle: true,
+          title: const Text('Add to...')),
+      body: _getRoutines(),
+    );
   }
 
   Widget _buildRoutineList(context, Routines routine) => ListTile(
-        contentPadding: const EdgeInsets.all(12),
-        title: Text(routine.title),
-        onTap: ()  {
-          var addExer = addExerToRoutine (exer, routine);
-          Provider.of<MyState>(context, listen: false).updateRoutine(
-            routine.id,
-            addExer,);
-            showAlertDialog(context);
-            //Navigator.pop(context);
+      contentPadding: const EdgeInsets.all(12),
+      title: Text(routine.title),
+      onTap: () {
+        var addExer = addExerToRoutine(exer, routine);
+        Provider.of<MyState>(context, listen: false).updateRoutine(
+          routine.id,
+          addExer,
+        );
+        showAlertDialog(context);
+        //Navigator.pop(context);
+      }
 
-            
-            
-           
-      
-        }
-          
-        //Posta övning till rutin.
+      //Posta övning till rutin.
       );
 
   Widget _getRoutines() {
@@ -58,56 +54,46 @@ class AddExer extends StatelessWidget {
             .toList());
   }
 
- 
- showAlertDialog(BuildContext context) {
+  showAlertDialog(BuildContext context) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: Text("OK"),
+      onPressed: () {
+        Navigator.pop(context);
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => const MyApp()));
+      },
+    );
 
-  // set up the button
-  Widget okButton = TextButton(
-    child: Text("OK"),
-    onPressed: () {
-     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyApp()));
-  
-    },
-  );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Exercise added successfully!"),
+      actions: [
+        okButton,
+      ],
+    );
 
-  // set up the AlertDialog
-  AlertDialog alert = AlertDialog(
-    title: Text("My title"),
-    content: Text("This is my message."),
-    actions: [
-      okButton,
-    ],
-  );
-
-  // show the dialog
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return alert;
-    },
-  );
-}
-
-  // set up the AlertDialog
- 
-
-
-
-
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
-      addExerToRoutine(Exer exer, Routines routine)
-        {
-          routine.exercises.add(exer.name);
-          Routines updatedRoutine = routine;
-          return updatedRoutine;
-          
-    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
-   /* routine.exercises.(index);
+  // set up the AlertDialog
+
+}
+
+addExerToRoutine(Exer exer, Routines routine) {
+  routine.exercises.add(exer.name);
+  Routines updatedRoutine = routine;
+  return updatedRoutine;
+
+  //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
+  /* routine.exercises.(index);
     Routines updatedRoutine = routine;
     print(updatedRoutine.exercises);
     return updatedRoutine;*/
-  }
-
-
+}
