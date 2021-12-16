@@ -32,6 +32,7 @@ class _AddExerState extends State<AddExer> {
       body: _getRoutines(),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
+          backgroundColor: Colors.pink[300],
           onPressed: () {
             addNewRoutineDialog(context);
           }),
@@ -74,6 +75,9 @@ class _AddExerState extends State<AddExer> {
       onPressed: () {
         Navigator.pop(context);
       },
+      style: TextButton.styleFrom(
+        primary: Colors.pink[300],
+      ),
     );
     AlertDialog alert = AlertDialog(
       title: const Text("Create new routine:"),
