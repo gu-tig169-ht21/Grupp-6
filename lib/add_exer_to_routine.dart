@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_first_app/exercise_list_view.dart';
+import 'package:my_first_app/spec_routine.dart';
 import 'package:provider/provider.dart';
 
 import 'apiModel.dart';
 import 'api_routine_model.dart';
 import 'bottomnavbar.dart';
+import 'main.dart';
 import 'model.dart';
 
 class AddExer extends StatelessWidget {
@@ -19,13 +22,26 @@ class AddExer extends StatelessWidget {
             centerTitle: true,
             title: const Text('Add to...')),
         body: _getRoutines(),
-        bottomNavigationBar: const BottomNavBar());
+        );
   }
 
-  Widget _buildRoutineList(context, Routines routines) => ListTile(
+  Widget _buildRoutineList(context, Routines routine) => ListTile(
         contentPadding: const EdgeInsets.all(12),
-        title: Text(routines.title),
-        onTap: () {},
+        title: Text(routine.title),
+        onTap: ()  {
+          var addExer = addExerToRoutine (exer, routine);
+          Provider.of<MyState>(context, listen: false).updateRoutine(
+            routine.id,
+            addExer,);
+            showAlertDialog(context);
+            //Navigator.pop(context);
+
+            
+            
+           
+      
+        }
+          
         //Posta övning till rutin.
       );
 
@@ -41,4 +57,57 @@ class AddExer extends StatelessWidget {
             .map<Widget>((routine) => _buildRoutineList(context, routine))
             .toList());
   }
+
+ 
+ showAlertDialog(BuildContext context) {
+
+  // set up the button
+  Widget okButton = TextButton(
+    child: Text("OK"),
+    onPressed: () {
+     Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => MyApp()));
+  
+    },
+  );
+
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: Text("My title"),
+    content: Text("This is my message."),
+    actions: [
+      okButton,
+    ],
+  );
+
+  // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
 }
+
+  // set up the AlertDialog
+ 
+
+
+
+
+  }
+
+      addExerToRoutine(Exer exer, Routines routine)
+        {
+          routine.exercises.add(exer.name);
+          Routines updatedRoutine = routine;
+          return updatedRoutine;
+          
+    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
+   /* routine.exercises.(index);
+    Routines updatedRoutine = routine;
+    print(updatedRoutine.exercises);
+    return updatedRoutine;*/
+  }
+
+
