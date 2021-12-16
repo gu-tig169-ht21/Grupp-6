@@ -32,12 +32,11 @@ class SpecRoutine extends StatelessWidget {
                 icon: const Icon(Icons.delete),
                 color: Colors.pink[300],
                 onPressed: () {
-                  var updatedRoutineList =
+                  var updatedRoutine =
                       changeRoutine(routines, index, routines.exercises[index]);
                   Provider.of<MyState>(context, listen: false).updateRoutine(
                     routines.id,
-                    routines.title,
-                    updatedRoutineList,
+                    updatedRoutine,
                   );
                 }),
           );
@@ -46,12 +45,9 @@ class SpecRoutine extends StatelessWidget {
 
   changeRoutine(Routines routine, int index, String choosenExer) {
     //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
-    print(routine.exercises);
-    print(index);
-    print(choosenExer);
     routine.exercises.removeAt(index);
-    print(routine.exercises);
-    List<String> updatedRoutineList = routine.exercises;
-    return updatedRoutineList;
+    Routines updatedRoutine = routine;
+    print(updatedRoutine.exercises);
+    return updatedRoutine;
   }
 }

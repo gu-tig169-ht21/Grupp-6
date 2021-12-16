@@ -32,10 +32,8 @@ class MyState extends ChangeNotifier {
     await getRoutineList();
   }
 
-  void updateRoutine(
-      int routinesId, String title, List<String> updatedRoutineList) async {
-    print(updatedRoutineList);
-    await Api.changeRoutine(routinesId, title, updatedRoutineList);
+  void updateRoutine(int routinesId, Routines updatedRoutines) async {
+    await Api.changeRoutine(routinesId, updatedRoutines);
     await getRoutineList();
   }
 

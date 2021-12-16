@@ -40,16 +40,14 @@ class Api {
   }
 
 //Ta bort en övning
-  static Future changeRoutine(
-      int routinesId, String title, List<String> updatedRoutineList) async {
+  static Future changeRoutine(int routinesId, Routines updatedRoutine) async {
     //Put
+    var jsonRoutine = updatedRoutine.toJson();
     await http.put(Uri.parse('$API_ROUTINES$routinesId'),
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',
         },
-        body: jsonEncode({
-          {"Title": title, "Exercises": updatedRoutineList}
-        }));
+        body: jsonEncode(jsonRoutine));
     //This function always return a empty {}.
 
     /* {
