@@ -48,14 +48,16 @@ class Api {
           'Content-Type': 'application/json; charset=UTF-8',
         },
         body: jsonEncode(jsonRoutine));
-    //This function always return a empty {}.
+  }
 
-    /* {
-    "Title": "Rutin som ska ändras",
-    "Exercises": [
-        "Ett",
-        "Två Lift"
-        ]
-      } */
+  static Future createRoutine(
+      {required String title, required List<String> list}) async {
+    return http.post(
+      Uri.parse('$API_ROUTINES'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode({'Title': title, 'Exercises': list}),
+    );
   }
 }

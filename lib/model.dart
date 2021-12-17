@@ -37,6 +37,13 @@ class MyState extends ChangeNotifier {
     await getRoutineList();
   }
 
+  void createRoutine(String newRoutineTitle, String addExer) async {
+    final List<String> newExerList = [];
+    newExerList.add(addExer);
+
+    await Api.createRoutine(title: newRoutineTitle, list: newExerList);
+  }
+
   List<Routines> _routineList = [];
 
   List<Routines> get routineList => _routineList;

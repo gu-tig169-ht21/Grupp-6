@@ -32,6 +32,7 @@ class _AddExerState extends State<AddExer> {
       body: _getRoutines(),
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.add),
+          backgroundColor: Colors.pink[300],
           onPressed: () {
             addNewRoutineDialog(context);
           }),
@@ -68,19 +69,21 @@ class _AddExerState extends State<AddExer> {
   }
 
   addNewRoutineDialog(BuildContext context) {
-    // set up the button
     Widget okButton = TextButton(
-      child: Text("CREATE"),
-      onPressed: () {
-        Navigator.pop(context);
-      },
-    );
+        child: Text("CREATE"),
+        onPressed: () {
+          Navigator.of(context).pop();
+          Provider.of<MyState>(context, listen: false)
+              .createRoutine(_textFieldController.text, widget.exer.name);
+
+          successfullyAddedDialog(context);
+        },
+        style: TextButton.styleFrom(primary: Colors.pink[300]));
+
     AlertDialog alert = AlertDialog(
       title: const Text("Create new routine:"),
       content: TextFormField(
-        onChanged: (value) {
-          print(value);
-        },
+        onChanged: (value) {},
         controller: _textFieldController,
         decoration: const InputDecoration(hintText: "Name your new routine..."),
         validator: (title) {
@@ -97,6 +100,7 @@ class _AddExerState extends State<AddExer> {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (BuildContext context) {
         return alert;
       },
@@ -122,6 +126,7 @@ class _AddExerState extends State<AddExer> {
 
     showDialog(
       context: context,
+      useRootNavigator: false,
       builder: (BuildContext context) {
         return alert;
       },
