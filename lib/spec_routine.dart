@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/apiModel.dart';
 import 'package:my_first_app/api_routine_model.dart';
 import 'package:provider/provider.dart';
 
 import 'model.dart';
+import 'start_routine.dart';
 
 class SpecRoutine extends StatelessWidget {
   final Routines routine;
@@ -15,7 +17,14 @@ class SpecRoutine extends StatelessWidget {
             backgroundColor: Colors.deepOrange[300],
             centerTitle: true,
             title: Text(routine.title)),
-        body: _getExers(context));
+        body: Center(
+          child: Column(
+            children: [
+              _getExers(context),
+              _startWorkout(),
+            ],
+          ),
+        ));
   }
 
   Widget _getExers(context) {
@@ -62,5 +71,32 @@ class SpecRoutine extends StatelessWidget {
     routine.exercises.removeAt(index);
     Routines updatedRoutine = routine;
     return updatedRoutine;
+  }
+
+  Widget _startWorkout() {
+    return Container(
+      width: 200,
+      height: 100,
+      padding: EdgeInsets.all(12),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        color: Colors.pink[300],
+        borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      ),
+      child: TextButton(
+          onPressed: () async {
+            var newStartRoutine = await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => StartRoutine(Routines(
+                      id: routine.id,
+                      title: routine.title,
+                      exercises: routine.exercises)),
+                ));
+          },
+          child: Text("Start Workout"),
+          style: TextButton.styleFrom(
+              primary: Colors.white, backgroundColor: Colors.indigo)),
+    );
   }
 }
