@@ -34,7 +34,8 @@ class StartRoutine extends StatelessWidget {
               spacing: 60.0,
               runSpacing: 20.0,
               children: [
-                _nextButton(), _backButton()],
+                 _backButton(),
+                 _nextButton()],
             ),
           ],
         ),
