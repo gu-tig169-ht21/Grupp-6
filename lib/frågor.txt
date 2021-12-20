@@ -1,5 +1,5 @@
 Fråga 1. Reloada state i spec_routine. Nu fuskar vi :P
-Fråga 2. Få den nya rutinen att synas i "my routines" när man skapar en ny.
+Fråga 2. Få den nya rutinen att synas i my routines när man skapar en ny.
 
 
 
@@ -9,4 +9,5 @@ TODO list:
  * Fixa navbar så den byter färg :D
  * Sökbar
  * Ny vy för att starta träning
+ * Kolla på "safearea"
 

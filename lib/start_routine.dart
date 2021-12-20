@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
 import 'apiModel.dart';
+import 'api_routine_model.dart';
 
 class StartRoutine extends StatelessWidget {
-  final Exer exer;
-  StartRoutine(this.exer);
+  final Routines routine;
+  StartRoutine(this.routine);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.deepOrange[300],
         centerTitle: true,
-        title: Text(exer.name),
+        title: Text(routine.title),
       ),
       body: Center(
         child: Column(
           children: <Widget>[
-            Image(image: NetworkImage(exer.gifUrl)),
+            //Image(image: NetworkImage(ro.gifUrl)),
             Wrap(
               alignment: WrapAlignment.end,
               spacing: 10.0,
@@ -61,6 +62,9 @@ Widget _nextButton() {
         onPressed: () {},
         child: Text("Next"),
         style: TextButton.styleFrom(
-            primary: Colors.white, backgroundColor: Colors.indigo)),
+          primary: Colors.white,
+          backgroundColor: Colors.indigo,
+          textStyle: const TextStyle(fontSize: 30),
+        )),
   );
 }

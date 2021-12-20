@@ -20,8 +20,8 @@ class SpecRoutine extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              _getExers(context),
-              _startWorkout(),
+              SizedBox(height: 600, child: _getExers(context)),
+              SizedBox(height: 100, child: _startWorkout(routine)),
             ],
           ),
         ));
@@ -56,10 +56,6 @@ class SpecRoutine extends StatelessWidget {
                             exercises: routine.exercises,
                             id: routine.id,
                             title: routine.title))));
-                if (routine != null) {
-                  Provider.of<MyState>(context, listen: false)
-                      .showSpecRoutine(routine);
-                }
               },
             ),
           );
@@ -73,7 +69,7 @@ class SpecRoutine extends StatelessWidget {
     return updatedRoutine;
   }
 
-  Widget _startWorkout() {
+  Widget _startWorkout(context) {
     return Container(
       width: 200,
       height: 100,
