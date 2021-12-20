@@ -21,7 +21,8 @@ class SpecRoutine extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: SizedBox(height: 600, child: _getExers(context)),
+                flex: 2,
+                child: SizedBox(child: _getExers(context)),
               ),
               Expanded(
                 child: SizedBox(height: 100, child: _startWorkout(routine)),
