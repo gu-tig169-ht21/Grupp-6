@@ -20,8 +20,12 @@ class SpecRoutine extends StatelessWidget {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 600, child: _getExers(context)),
-              SizedBox(height: 100, child: _startWorkout(routine)),
+              Expanded(
+                child: SizedBox(height: 600, child: _getExers(context)),
+              ),
+              Expanded(
+                child: SizedBox(height: 100, child: _startWorkout(routine)),
+              )
             ],
           ),
         ));
@@ -70,29 +74,30 @@ class SpecRoutine extends StatelessWidget {
   }
 
   Widget _startWorkout(context) {
-    return Container(
-      width: 200,
-      height: 100,
-      padding: EdgeInsets.all(12),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.pink[300],
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      ),
-      child: TextButton(
-          onPressed: () async {
-            var newStartRoutine = await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => StartRoutine(Routines(
-                      id: routine.id,
-                      title: routine.title,
-                      exercises: routine.exercises)),
-                ));
-          },
-          child: Text("Start Workout"),
-          style: TextButton.styleFrom(
-              primary: Colors.white, backgroundColor: Colors.indigo)),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+            child: Text('Start workout'),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.pink[300],
+              onPrimary: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+              textStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 30,
+              ),
+            ),
+            onPressed: () async {
+              var newStartRoutine = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StartRoutine(Routines(
+                          id: routine.id,
+                          title: routine.title,
+                          exercises: routine.exercises))));
+            }),
+      ],
     );
   }
 }
