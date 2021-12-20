@@ -46,11 +46,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
               switch (_selectedIndex) {
                 case 0:
                   _navigateToExercises(context);
-                  print(_selectedIndex);
                   break;
                 case 1:
                   _navigateToRoutine(context);
-                  print(_selectedIndex);
                   break;
               }
             });
