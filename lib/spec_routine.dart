@@ -21,7 +21,7 @@ class SpecRoutine extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                flex: 2,
+                flex: 3,
                 child: SizedBox(child: _getExers(context)),
               ),
               Expanded(
@@ -46,12 +46,8 @@ class SpecRoutine extends StatelessWidget {
               icon: const Icon(Icons.delete),
               color: Colors.pink[300],
               onPressed: () {
-                var updatedRoutine =
-                    changeRoutine(routine, index, routine.exercises[index]);
-                Provider.of<MyState>(context, listen: false).updateRoutine(
-                  routine.id,
-                  updatedRoutine,
-                );
+                Provider.of<MyState>(context, listen: false)
+                    .changeRoutine(routine, index, routine.exercises[index]);
                 //Fixa en legit update
                 Navigator.pop(context);
                 Navigator.push(
@@ -65,13 +61,6 @@ class SpecRoutine extends StatelessWidget {
             ),
           );
         });
-  }
-
-  changeRoutine(Routines routine, int index, String choosenExer) {
-    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
-    routine.exercises.removeAt(index);
-    Routines updatedRoutine = routine;
-    return updatedRoutine;
   }
 
   Widget _startWorkout(context) {
@@ -93,12 +82,10 @@ class SpecRoutine extends StatelessWidget {
               var newStartRoutine = await Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => StartRoutine(
-                      Routines(
+                      builder: (context) => StartRoutine(Routines(
                           id: routine.id,
                           title: routine.title,
-                          exercises: routine.exercises
-                          ))));
+                          exercises: routine.exercises))));
             }),
       ],
     );

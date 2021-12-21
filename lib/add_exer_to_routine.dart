@@ -43,11 +43,8 @@ class _AddExerState extends State<AddExer> {
       contentPadding: const EdgeInsets.all(12),
       title: Text(routine.title),
       onTap: () {
-        var addExer = addExerToRoutine(widget.exer, routine);
-        Provider.of<MyState>(context, listen: false).updateRoutine(
-          routine.id,
-          addExer,
-        );
+        Provider.of<MyState>(context, listen: false)
+            .addExerToRoutine(widget.exer, routine);
         successfullyAddedDialog(context);
         //Navigator.pop(context);
       }
@@ -131,17 +128,5 @@ class _AddExerState extends State<AddExer> {
         return alert;
       },
     );
-  }
-
-  addExerToRoutine(Exer exer, Routines routine) {
-    routine.exercises.add(exer.name);
-    Routines updatedRoutine = routine;
-    return updatedRoutine;
-
-    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
-    /* routine.exercises.(index);
-    Routines updatedRoutine = routine;
-    print(updatedRoutine.exercises);
-    return updatedRoutine;*/
   }
 }

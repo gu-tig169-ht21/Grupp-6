@@ -32,11 +32,6 @@ class MyState extends ChangeNotifier {
     await getRoutineList();
   }
 
-  void updateRoutine(int routinesId, Routines updatedRoutines) async {
-    await Api.changeRoutine(routinesId, updatedRoutines);
-    await getRoutineList();
-  }
-
   void createRoutine(String newRoutineTitle, String addExer) async {
     final List<String> newExerList = [];
     newExerList.add(addExer);
@@ -51,11 +46,28 @@ class MyState extends ChangeNotifier {
   Future getRoutineList() async {
     List<Routines> routineList = await Api.getRoutines();
     _routineList = routineList;
+    print("routineList.length");
     notifyListeners();
+    await Future.delayed(Duration(seconds: 2));
   }
 
   Future initialize() async {
     await getExerList();
+    await getRoutineList();
+  }
+
+  void changeRoutine(Routines routine, int index, String choosenExer) async {
+    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
+    routine.exercises.removeAt(index);
+    Routines updatedRoutine = routine;
+    await Api.changeRoutine(routine.id, updatedRoutine);
+    await getRoutineList();
+  }
+
+  void addExerToRoutine(Exer exer, Routines routine) async {
+    routine.exercises.add(exer.name);
+    Routines updatedRoutine = routine;
+    await Api.changeRoutine(routine.id, updatedRoutine);
     await getRoutineList();
   }
 }
