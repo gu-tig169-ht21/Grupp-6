@@ -6,7 +6,8 @@ Fråga 3. Få gifsen från de andra apiet? Kan man göra det med map where? Kan 
 
 TODO list: 
  * Filtrera listan med exercises. 
+ * Sökbar   - göra allt till lowercase och kanske ta bort mellanrum och jämföra de värdena. 
  * Fundera på hur vi kan göra bättre/tydligare UI
  * Fixa navbar så den byter färg :D
- * Sökbar   - göra allt till lowercase och kanske ta bort mellanrum och jämföra de värdena. 
- * Ny vy för att starta träning
+ * Lägga till circular progress indicator 
+ * Kanske ha någon snyggare header 
