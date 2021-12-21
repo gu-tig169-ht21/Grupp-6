@@ -1,6 +1,5 @@
-Fråga 1. Reloada state i spec_routine. Nu fuskar vi :P  Notify listners
-Fråga 2. Få den nya rutinen att synas i my routines när man skapar en ny.
-Fråga 3. Få gifsen från de andra apiet? Kan man göra det med map where? Kan man identifiera med string? Vår lista med övningar är just nu en List.  
+Fråga 1. Reloada state i spec_routine. Nu fuskar vi :P  Notify listners. Få den nya rutinen att synas i my routines när man skapar en ny. 
+ Debugga och försöka förstå varför den inte upppdateras
 
 
 
