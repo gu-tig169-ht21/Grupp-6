@@ -14,6 +14,7 @@ class MyState extends ChangeNotifier {
   Future getExerList() async {
     List<Exer> list = await Api.getInfo();
     _list = list;
+    getFilterList(_list);
     notifyListeners();
   }
 
@@ -46,7 +47,6 @@ class MyState extends ChangeNotifier {
   Future getRoutineList() async {
     List<Routines> routineList = await Api.getRoutines();
     _routineList = routineList;
-    print("routineList.length");
     notifyListeners();
     await Future.delayed(Duration(seconds: 2));
   }
@@ -69,5 +69,15 @@ class MyState extends ChangeNotifier {
     Routines updatedRoutine = routine;
     await Api.changeRoutine(routine.id, updatedRoutine);
     await getRoutineList();
+  }
+
+  void getFilterList(_list) {
+    List<String> _getFilterList = [];
+
+    for (var i = 0; i < _list.length; i++) {
+      _getFilterList.add(_list[i].target);
+    }
+    List<String> _filterList = _getFilterList.toSet().toList();
+    print(_filterList);
   }
 }
