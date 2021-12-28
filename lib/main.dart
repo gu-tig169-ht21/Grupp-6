@@ -49,20 +49,27 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
           title: Text(widget.title),
           actions: [
-            PopupMenuButton(
-                onSelected: (int) {},
-                itemBuilder: (context) => [
-                      const PopupMenuItem(
-                          child: Text('UpperBody'), value: 'UpperBody'),
-                      const PopupMenuItem(
-                          child: Text('LowerBody'), value: 'LowerBody'),
-                      const PopupMenuItem(child: Text('Waist'), value: 'Waist'),
-                      const PopupMenuItem(child: Text('Back'), value: 'Back'),
-                    ]),
+            Consumer<MyState>(
+              builder: (context, state, child) => PopupMenuButton(
+                onSelected: (_) {},
+                itemBuilder: (context) {
+                  return _getPopUpItems(filterList: state.filterList);
+                },
+              ),
+            )
           ],
         ),
         body: Consumer<MyState>(
             builder: (context, state, child) => ExerciseListView(state.list)),
         bottomNavigationBar: const BottomNavBar());
+  }
+
+  _getPopUpItems({filterList}) {
+    List<PopupMenuItem> filterItems = [];
+    filterList.forEach((target) {
+      var item = PopupMenuItem(child: Text(target), value: target);
+      filterItems.add(item);
+    });
+    return filterItems;
   }
 }

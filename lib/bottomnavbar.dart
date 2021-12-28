@@ -27,14 +27,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
         backgroundColor: Colors.deepOrange[300],
         type: BottomNavigationBarType.fixed,
-        fixedColor: Colors.white,
+        selectedItemColor: Colors.pink,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.list),
+            icon: Icon(Icons.list, color: Colors.grey),
+            activeIcon: Icon(Icons.list, color: Colors.pink),
             label: 'Exercises',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_rounded, color: Colors.amber),
+            icon: Icon(Icons.fitness_center_rounded, color: Colors.grey),
+            activeIcon: Icon(Icons.fitness_center_rounded, color: Colors.amber),
             label: 'My Routine',
           ),
         ],

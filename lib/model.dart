@@ -71,13 +71,18 @@ class MyState extends ChangeNotifier {
     await getRoutineList();
   }
 
+  List<String> _filterList = [];
+
+  List<String> get filterList => _filterList;
+
   void getFilterList(_list) {
     List<String> _getFilterList = [];
 
     for (var i = 0; i < _list.length; i++) {
       _getFilterList.add(_list[i].target);
     }
-    List<String> _filterList = _getFilterList.toSet().toList();
+    _filterList = _getFilterList.toSet().toList();
     print(_filterList);
+    notifyListeners();
   }
 }
