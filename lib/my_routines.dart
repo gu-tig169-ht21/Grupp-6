@@ -53,9 +53,14 @@ class MyRoutines extends StatelessWidget {
   }
 
   Widget _getRoutineList(context, List<Routines> routineList) {
-    return ListView(
-        children: routineList
-            .map<Widget>((routine) => _buildRoutineList(context, routine))
-            .toList());
+    return routineList.isEmpty
+        ? Center(
+            child: CircularProgressIndicator(
+            color: Colors.pink[300],
+          ))
+        : ListView(
+            children: routineList
+                .map<Widget>((routine) => _buildRoutineList(context, routine))
+                .toList());
   }
 }

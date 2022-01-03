@@ -17,19 +17,7 @@ class SpecRoutine extends StatelessWidget {
             backgroundColor: Colors.deepOrange[300],
             centerTitle: true,
             title: Text(routine.title)),
-        body: Center(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: SizedBox(child: _getExers(context)),
-              ),
-              Expanded(
-                child: SizedBox(height: 100, child: _startWorkout(context)),
-              )
-            ],
-          ),
-        ));
+        body: _getExers(context));
   }
 
   Widget _getExers(context) {
@@ -61,33 +49,5 @@ class SpecRoutine extends StatelessWidget {
             ),
           );
         });
-  }
-
-  Widget _startWorkout(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ElevatedButton(
-            child: Text('Start workout'),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.pink[300],
-              onPrimary: Colors.white,
-              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-              textStyle: TextStyle(
-                color: Colors.black,
-                fontSize: 30,
-              ),
-            ),
-            onPressed: () async {
-              var newStartRoutine = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => StartRoutine(Routines(
-                          id: routine.id,
-                          title: routine.title,
-                          exercises: routine.exercises))));
-            }),
-      ],
-    );
   }
 }

@@ -18,7 +18,10 @@ class ExerciseListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return list.isEmpty
-        ? const CircularProgressIndicator()
+        ? Center(
+            child: CircularProgressIndicator(
+            color: Colors.pink[300],
+          ))
         : ListView(
             children:
                 list.map((exer) => _buildExerciseList(context, exer)).toList());
