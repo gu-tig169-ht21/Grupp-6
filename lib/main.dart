@@ -61,7 +61,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: Consumer<MyState>(
             builder: (context, state, child) => ExerciseListView(state.list)),
-        bottomNavigationBar: const BottomNavBar());
+        bottomNavigationBar: const BottomNavBar(
+          currentRoute: MyApp,
+        ));
   }
 
   _getPopUpItems({filterList}) {

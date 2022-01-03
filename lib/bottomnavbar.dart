@@ -8,11 +8,11 @@ import 'package:provider/provider.dart';
 import 'main.dart';
 
 class BottomNavBar extends StatefulWidget {
-  final currentRoute;
+  final dynamic currentRoute;
 
   const BottomNavBar({
     Key? key,
-    this.currentRoute,
+    required this.currentRoute,
   }) : super(key: key);
 
   @override
@@ -27,18 +27,13 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
         backgroundColor: Colors.deepOrange[300],
         type: BottomNavigationBarType.fixed,
-        selectedItemColor: Colors.pink,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.list, color: Colors.grey),
-            activeIcon: Icon(Icons.list, color: Colors.pink),
-            label: 'Exercises',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.fitness_center_rounded, color: Colors.grey),
-            activeIcon: Icon(Icons.fitness_center_rounded, color: Colors.amber),
-            label: 'My Routine',
-          ),
+        selectedItemColor:
+            widget.currentRoute == MyApp ? Colors.white : Colors.brown,
+        unselectedItemColor:
+            widget.currentRoute != MyApp ? Colors.white : Colors.brown,
+        items: <BottomNavigationBarItem>[
+          _exercisesItem(),
+          _routinesItem(),
         ],
         currentIndex: _selectedIndex,
 
@@ -58,6 +53,24 @@ class _BottomNavBarState extends State<BottomNavBar> {
             });
           }
         });
+  }
+
+  _exercisesItem() {
+    return BottomNavigationBarItem(
+      icon: widget.currentRoute == MyApp
+          ? const Icon(Icons.list, color: Colors.white)
+          : const Icon(Icons.list, color: Colors.brown),
+      label: 'Exercises',
+    );
+  }
+
+  _routinesItem() {
+    return BottomNavigationBarItem(
+      icon: widget.currentRoute == MyRoutines
+          ? const Icon(Icons.fitness_center_rounded, color: Colors.white)
+          : const Icon(Icons.fitness_center_rounded, color: Colors.brown),
+      label: 'My Routine',
+    );
   }
 
   _navigateToRoutine(context) {

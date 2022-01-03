@@ -16,7 +16,7 @@ class MyRoutines extends StatelessWidget {
             centerTitle: true,
             title: const Text('My Routines')),
         body: _getRoutines(),
-        bottomNavigationBar: const BottomNavBar());
+        bottomNavigationBar: const BottomNavBar(currentRoute: MyRoutines));
   }
 
   Widget _buildRoutineList(context, Routines routines) => ListTile(

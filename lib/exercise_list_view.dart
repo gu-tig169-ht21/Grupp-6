@@ -17,9 +17,11 @@ class ExerciseListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-        children:
-            list.map((exer) => _buildExerciseList(context, exer)).toList());
+    return list.isEmpty
+        ? const CircularProgressIndicator()
+        : ListView(
+            children:
+                list.map((exer) => _buildExerciseList(context, exer)).toList());
   }
 
   Widget _buildExerciseList(context, Exer exer) => ListTile(
