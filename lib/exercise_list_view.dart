@@ -25,6 +25,7 @@ class ExerciseListView extends StatelessWidget {
           ))
         : ListView(
             shrinkWrap: true,
+            physics: ClampingScrollPhysics(),
             children:
                 list.map((exer) => _buildExerciseList(context, exer)).toList());
   }
