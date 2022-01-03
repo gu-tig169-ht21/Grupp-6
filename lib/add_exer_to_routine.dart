@@ -25,18 +25,20 @@ class _AddExerState extends State<AddExer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Colors.deepOrange[300],
-          centerTitle: true,
-          title: Text('Add ' + widget.exer.name + ' to...')),
-      body: _getRoutines(),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add),
-          backgroundColor: Colors.pink[300],
-          onPressed: () {
-            addNewRoutineDialog(context);
-          }),
-    );
+        appBar: AppBar(
+            backgroundColor: Colors.deepOrange[300],
+            centerTitle: true,
+            title: Text('Add ' + widget.exer.name + ' to...')),
+        body: Center(
+            child: Column(children: [
+          Expanded(
+            flex: 3,
+            child: SizedBox(child: _getRoutines()),
+          ),
+          Expanded(
+            child: SizedBox(height: 100, child: _addRoutine(context)),
+          )
+        ])));
   }
 
   Widget _buildRoutineList(context, Routines routine) => ListTile(
@@ -128,6 +130,28 @@ class _AddExerState extends State<AddExer> {
       builder: (BuildContext context) {
         return alert;
       },
+    );
+  }
+
+  Widget _addRoutine(context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+            child: Text('New Routine +'),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.pink[300],
+              onPrimary: Colors.white,
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              textStyle: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+            onPressed: () async {
+              addNewRoutineDialog(context);
+            }),
+      ],
     );
   }
 }

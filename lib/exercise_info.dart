@@ -49,12 +49,20 @@ class ExerInfo extends StatelessWidget {
           children: [
             const Text(
               'Target muscle',
-              style: TextStyle(fontSize: 20, color: Colors.white),
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1),
               textAlign: TextAlign.center,
             ),
+            const SizedBox(height: 10),
             Text(
               exer.target,
-              style: const TextStyle(fontSize: 20, color: Colors.white),
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+              ),
               textAlign: TextAlign.center,
             ),
           ],
@@ -63,19 +71,35 @@ class ExerInfo extends StatelessWidget {
 
   Widget _infoBox2(equipment) {
     return Container(
-      width: 200,
-      height: 100,
-      padding: EdgeInsets.all(12),
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        color: Colors.pink[300],
-        borderRadius: BorderRadius.all(Radius.circular(8.0)),
-      ),
-      child: Text(
-        exer.equipment,
-        style: TextStyle(fontSize: 20, color: Colors.white),
-        textAlign: TextAlign.center,
-      ),
-    );
+        width: 200,
+        height: 100,
+        padding: EdgeInsets.all(12),
+        alignment: Alignment.center,
+        decoration: BoxDecoration(
+          color: Colors.pink[300],
+          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+        ),
+        child: Column(
+          children: [
+            const Text(
+              'Equipment',
+              style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 1),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 10),
+            Text(
+              exer.equipment,
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.white,
+              ),
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ));
   }
 }
