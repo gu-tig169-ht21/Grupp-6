@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'bottomnavbar.dart';
 import 'exercise_list_view.dart';
 import 'model.dart';
-import 'my_routines.dart';
-import 'spec_routine.dart';
 
 void main() {
   var state = MyState();
@@ -49,25 +47,61 @@ class _MyHomePageState extends State<MyHomePage> {
           centerTitle: true,
           title: Text(widget.title),
           actions: [
-            Consumer<MyState>(
-              builder: (context, state, child) => PopupMenuButton(
-                onSelected: (_) {},
+            Consumer<MyState>(builder: (context, state, child) {
+              return PopupMenuButton(
                 itemBuilder: (context) {
                   return _getPopUpItems(filterList: state.filterList);
                 },
-              ),
-            )
+                onSelected: (dynamic value) {
+                  final String newValue = value == null ? 'All' : value;
+                  Provider.of<MyState>(context, listen: false).filter(newValue);
+                },
+              );
+            })
           ],
         ),
-        body: Consumer<MyState>(
-            builder: (context, state, child) => ExerciseListView(state.list)),
+        body: Consumer<MyState>(builder: (context, state, child) {
+          return _listView(state: state);
+        }),
         bottomNavigationBar: const BottomNavBar(
           currentRoute: MyApp,
         ));
   }
 
+  _listView({required state}) {
+    final List<Exer> filteredExerList = _filterList(state.list, state.filterBy);
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: filteredExerList.isEmpty ? 1 : filteredExerList.length,
+      itemBuilder: (context, index) {
+        if (filteredExerList.isEmpty) {
+          return Center(
+              child: CircularProgressIndicator(
+            color: Colors.pink[300],
+          ));
+        }
+        return ExerciseListView(filteredExerList);
+      },
+    );
+  }
+
+  List<Exer> _filterList(List<Exer> exerList, String filterBy) {
+    List<Exer> filteredExerList = [];
+    filteredExerList.clear();
+
+    for (Exer exer in exerList) {
+      if (exer.target == filterBy) {
+        filteredExerList.add(exer);
+      } else if (filterBy == "All" && exerList.isNotEmpty) {
+        return exerList;
+      }
+    }
+    return filteredExerList;
+  }
+
   _getPopUpItems({filterList}) {
     List<PopupMenuItem> filterItems = [];
+    filterItems.add(const PopupMenuItem(child: Text("All"), value: "All"));
     filterList.forEach((target) {
       var item = PopupMenuItem(child: Text(target), value: target);
       filterItems.add(item);

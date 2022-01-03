@@ -90,4 +90,14 @@ class MyState extends ChangeNotifier {
     print(_filterList);
     notifyListeners();
   }
+
+  String _filterBy = 'All';
+  String get filterBy => _filterBy;
+
+  void filter(String? filterBy) {
+    if (filterBy != null) {
+      _filterBy = filterBy;
+    }
+    notifyListeners();
+  }
 }

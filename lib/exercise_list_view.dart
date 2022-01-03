@@ -10,10 +10,11 @@ import 'package:provider/provider.dart';
 
 import 'model.dart';
 
+// ignore: must_be_immutable
 class ExerciseListView extends StatelessWidget {
   List<Exer> list;
 
-  ExerciseListView(this.list);
+  ExerciseListView(this.list, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class ExerciseListView extends StatelessWidget {
             color: Colors.pink[300],
           ))
         : ListView(
+            shrinkWrap: true,
             children:
                 list.map((exer) => _buildExerciseList(context, exer)).toList());
   }
