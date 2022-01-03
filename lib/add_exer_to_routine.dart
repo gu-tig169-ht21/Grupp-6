@@ -67,12 +67,13 @@ class _AddExerState extends State<AddExer> {
 
   addNewRoutineDialog(BuildContext context) {
     Widget okButton = TextButton(
-        child: Text("CREATE"),
+        child: const Text("CREATE"),
         onPressed: () {
-          Navigator.of(context).pop();
-          Provider.of<MyState>(context, listen: false)
-              .createRoutine(_textFieldController.text, widget.exer.name);
-
+          setState(() {
+            Navigator.of(context).pop();
+            Provider.of<MyState>(context, listen: false)
+                .createRoutine(_textFieldController.text, widget.exer.name);
+          });
           successfullyAddedDialog(context);
         },
         style: TextButton.styleFrom(primary: Colors.pink[300]));

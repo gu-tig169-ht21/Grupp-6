@@ -6,27 +6,32 @@ import 'package:provider/provider.dart';
 import 'model.dart';
 import 'start_routine.dart';
 
-class SpecRoutine extends StatelessWidget {
+class SpecRoutine extends StatefulWidget {
   final Routines routine;
   SpecRoutine(this.routine);
 
+  @override
+  State<SpecRoutine> createState() => _SpecRoutineState();
+}
+
+class _SpecRoutineState extends State<SpecRoutine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
             backgroundColor: Colors.deepOrange[300],
             centerTitle: true,
-            title: Text(routine.title)),
+            title: Text(widget.routine.title)),
         body: _getExers(context));
   }
 
   Widget _getExers(context) {
     return ListView.builder(
-        itemCount: routine.exercises.length,
+        itemCount: widget.routine.exercises.length,
         itemBuilder: (context, index) {
           return ListTile(
             contentPadding: const EdgeInsets.all(12),
-            title: Text(routine.exercises[index]),
+            title: Text(widget.routine.exercises[index]),
             onTap: () async {
               /* Om man vill kan man länka vidare till showExerInfo */
             },
@@ -34,17 +39,20 @@ class SpecRoutine extends StatelessWidget {
               icon: const Icon(Icons.delete),
               color: Colors.pink[300],
               onPressed: () {
-                Provider.of<MyState>(context, listen: false)
-                    .changeRoutine(routine, index, routine.exercises[index]);
+                setState(() {
+                  Provider.of<MyState>(context, listen: false).changeRoutine(
+                      widget.routine, index, widget.routine.exercises[index]);
+                });
+
                 //Fixa en legit update
-                Navigator.pop(context);
+                /*  Navigator.pop(context);
                 Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (context) => SpecRoutine(Routines(
                             exercises: routine.exercises,
                             id: routine.id,
-                            title: routine.title))));
+                            title: routine.title)))); */
               },
             ),
           );

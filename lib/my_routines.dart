@@ -7,7 +7,12 @@ import 'package:provider/provider.dart';
 import 'model.dart';
 import 'api_routine_model.dart';
 
-class MyRoutines extends StatelessWidget {
+class MyRoutines extends StatefulWidget {
+  @override
+  State<MyRoutines> createState() => _MyRoutinesState();
+}
+
+class _MyRoutinesState extends State<MyRoutines> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,8 +46,10 @@ class MyRoutines extends StatelessWidget {
             icon: const Icon(Icons.delete),
             color: Colors.pink[300],
             onPressed: () {
-              Provider.of<MyState>(context, listen: false)
-                  .removeRoutine(routines); //ta bort
+              setState(() {
+                Provider.of<MyState>(context, listen: false)
+                    .removeRoutine(routines); //ta bort
+              });
             }),
       );
 

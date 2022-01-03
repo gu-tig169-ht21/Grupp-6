@@ -1,5 +1,7 @@
 Fråga 1. Reloada state i spec_routine. Nu fuskar vi :P  Notify listners. Få den nya rutinen att synas i my routines när man skapar en ny. 
- Debugga och försöka förstå varför den inte upppdateras
+Debugga och försöka förstå varför den inte upppdateras
+   -- Använda sig utav setState -> då behöver vi en stateful-widget istället. Använda setState runt våra providers.  
+
 
 
 
@@ -7,6 +9,12 @@ TODO list:
  * Filtrera listan med exercises. 
  * Sökbar   - göra allt till lowercase och kanske ta bort mellanrum och jämföra de värdena. 
  * Fundera på hur vi kan göra bättre/tydligare UI
- * Fixa navbar så den byter färg :D
- * Lägga till circular progress indicator 
  * Kanske ha någon snyggare header 
+ * Overflow då man ska lägga till en övning som har ett långt namn
+ * Lägga till kryssruta när man skapar ny rutin (Man kan klicka utanför, men för mer intuitet?)
+ * Ändra övningsvy, titlar och sånt. 
+
+
+ FIXAT: 
+ * Bottomnavbar byter färg
+* Lägga till circular progress indicator 
