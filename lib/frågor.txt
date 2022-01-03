@@ -6,15 +6,15 @@ Debugga och försöka förstå varför den inte upppdateras
 
 
 TODO list: 
- * Filtrera listan med exercises. 
- * Sökbar   - göra allt till lowercase och kanske ta bort mellanrum och jämföra de värdena. 
+ * Filtrera listan med exercises.  
  * Fundera på hur vi kan göra bättre/tydligare UI
  * Kanske ha någon snyggare header 
  * Overflow då man ska lägga till en övning som har ett långt namn
- * Lägga till kryssruta när man skapar ny rutin (Man kan klicka utanför, men för mer intuitet?)
  * Ändra övningsvy, titlar och sånt. 
+ * text om listan är tom
 
 
  FIXAT: 
  * Bottomnavbar byter färg
 * Lägga till circular progress indicator 
+* ny routine knapp
