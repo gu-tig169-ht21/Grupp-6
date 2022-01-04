@@ -67,9 +67,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   _navigateToRoutine(context) {
-    ///Check if we can pop.
+    //Kollar om vi kan popa.
     if (Navigator.canPop(context)) {
-      ///First we pop so we cant go back to the same route.
+      ///Om vi kan går vi tillbaka till föregående vy.
       Navigator.pop(context);
     }
 
@@ -78,9 +78,9 @@ class _BottomNavBarState extends State<BottomNavBar> {
   }
 
   _navigateToExercises(context) {
-    ///Check if we can pop.
+    //Kollar om vi kan popa.
     if (Navigator.canPop(context)) {
-      ///First we pop so we cant go back to the same route.
+      ///Om vi kan går vi tillbaka till föregående vy.
       Navigator.pop(context);
     }
 

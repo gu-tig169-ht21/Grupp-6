@@ -66,7 +66,7 @@ class _MyRoutinesState extends State<MyRoutines> {
             onPressed: () {
               setState(() {
                 Provider.of<MyState>(context, listen: false)
-                    .removeRoutine(routines); //Metod för att ta bort
+                    .removeRoutine(routines);
               });
             }),
       );

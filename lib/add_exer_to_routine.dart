@@ -44,11 +44,7 @@ class _AddExerState extends State<AddExer> {
         Provider.of<MyState>(context, listen: false)
             .addExerToRoutine(widget.exer, routine);
         successfullyAddedDialog(context);
-        //Navigator.pop(context);
-      }
-
-      //Posta övning till rutin.
-      );
+      });
 
   Widget _getRoutines() {
     return Consumer<MyState>(
@@ -104,7 +100,6 @@ class _AddExerState extends State<AddExer> {
   }
 
   successfullyAddedDialog(BuildContext context) {
-    // set up the button
     Widget okButton = TextButton(
       child: const Text("OK"),
       onPressed: () {
