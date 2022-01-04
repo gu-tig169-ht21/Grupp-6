@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/apiModel.dart';
+import 'package:my_first_app/api_model.dart';
 import 'package:provider/provider.dart';
 import 'bottomnavbar.dart';
 import 'exercise_list_view.dart';
@@ -19,12 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-          //primarySwatch: Colors.blue,
-          ),
-      home: const MyHomePage(title: 'Exercises'),
+    return const MaterialApp(
+      title: 'Exercises',
+      home: MyHomePage(title: 'Exercises'),
     );
   }
 }
@@ -53,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   return _getPopUpItems(filterList: state.filterList);
                 },
                 onSelected: (dynamic value) {
-                  final String newValue = value == null ? 'All' : value;
+                  final String newValue = value ?? 'All';
                   Provider.of<MyState>(context, listen: false).filter(newValue);
                 },
               );
@@ -69,7 +66,8 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _listView({required state}) {
-    final List<Exer> filteredExerList = _filterList(state.list, state.filterBy);
+    final List<Exer> filteredExerList =
+        _filterList(exerList: state.list, filterBy: state.filterBy);
     return ListView.builder(
       shrinkWrap: true,
       itemCount: filteredExerList.isEmpty ? 1 : filteredExerList.length,
@@ -85,7 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  List<Exer> _filterList(List<Exer> exerList, String filterBy) {
+  List<Exer> _filterList(
+      {required List<Exer> exerList, required String filterBy}) {
     List<Exer> filteredExerList = [];
     filteredExerList.clear();
 

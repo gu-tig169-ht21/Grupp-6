@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:my_first_app/api_routine_model.dart';
-import 'package:my_first_app/spec_routine.dart';
-import 'exercise_list_view.dart';
-import 'main.dart';
-import 'apiModel.dart';
-import 'Api.dart';
+import 'api_model.dart';
+import 'api.dart';
 
 class MyState extends ChangeNotifier {
+  Future initialize() async {
+    await getExerList();
+    await getRoutineList();
+  }
+
+//Hantera övningar
   List<Exer> _list = [];
 
   List<Exer> get list => _list;
@@ -20,6 +23,17 @@ class MyState extends ChangeNotifier {
 
   void showExerInfo(Exer exer) {
     _list = list;
+    notifyListeners();
+  }
+
+//Hantera rutiner
+  List<Routines> _routineList = [];
+
+  List<Routines> get routineList => _routineList;
+
+  Future getRoutineList() async {
+    List<Routines> routineList = await Api.getRoutines();
+    _routineList = routineList;
     notifyListeners();
   }
 
@@ -44,24 +58,7 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<Routines> _routineList = [];
-
-  List<Routines> get routineList => _routineList;
-
-  Future getRoutineList() async {
-    List<Routines> routineList = await Api.getRoutines();
-    _routineList = routineList;
-    notifyListeners();
-    // await Future.delayed(Duration(seconds: 2));
-  }
-
-  Future initialize() async {
-    await getExerList();
-    await getRoutineList();
-  }
-
   void changeRoutine(Routines routine, int index, String choosenExer) async {
-    //Fixa så att övningslistan uppdateras (ta bort den/index man klickar på. Return ny lista och skicka till provider.)
     routine.exercises.removeAt(index);
     Routines updatedRoutine = routine;
     await Api.changeRoutine(routine.id, updatedRoutine);
@@ -76,9 +73,14 @@ class MyState extends ChangeNotifier {
     await getRoutineList();
   }
 
+//Hantera filtrering
   List<String> _filterList = [];
 
   List<String> get filterList => _filterList;
+
+  String _filterBy = 'All';
+
+  String get filterBy => _filterBy;
 
   void getFilterList(_list) {
     List<String> _getFilterList = [];
@@ -87,12 +89,8 @@ class MyState extends ChangeNotifier {
       _getFilterList.add(_list[i].target);
     }
     _filterList = _getFilterList.toSet().toList();
-    print(_filterList);
     notifyListeners();
   }
-
-  String _filterBy = 'All';
-  String get filterBy => _filterBy;
 
   void filter(String? filterBy) {
     if (filterBy != null) {

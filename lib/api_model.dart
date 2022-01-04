@@ -1,21 +1,6 @@
-// To parse this JSON data, do
-//
-//     final Exer = ExercisesFromJson(jsonString);
-
-// ignore_for_file: file_names
+// ignore_for_file: non_constant_identifier_names
 
 import 'dart:convert';
-
-import 'package:my_first_app/exercise_list_view.dart';
-
-/*factory Exer.fromJson(Map<String, dynamic> json) => Exer(
-    bodyPart: json['bodyPart'],
-    equipment: json['equipment'],
-    gifUrl: json['gifUrl'],
-    id: json['id'],
-    name: json['name'],
-    target: json['target'],
-  );*/
 
 List<Exer> ExerFromJson(String str) =>
     List<Exer>.from(json.decode(str).map((x) => Exer.fromJson(x)));

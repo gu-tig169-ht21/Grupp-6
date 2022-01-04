@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/apiModel.dart';
 import 'package:my_first_app/api_routine_model.dart';
 import 'package:provider/provider.dart';
-
 import 'model.dart';
-import 'start_routine.dart';
 
 class SpecRoutine extends StatefulWidget {
   final Routines routine;
-  SpecRoutine(this.routine);
+  const SpecRoutine(this.routine, {Key? key}) : super(key: key);
 
   @override
   State<SpecRoutine> createState() => _SpecRoutineState();
@@ -32,9 +29,6 @@ class _SpecRoutineState extends State<SpecRoutine> {
           return ListTile(
             contentPadding: const EdgeInsets.all(12),
             title: Text(widget.routine.exercises[index]),
-            onTap: () async {
-              /* Om man vill kan man länka vidare till showExerInfo */
-            },
             trailing: IconButton(
               icon: const Icon(Icons.delete),
               color: Colors.pink[300],
@@ -43,16 +37,6 @@ class _SpecRoutineState extends State<SpecRoutine> {
                   Provider.of<MyState>(context, listen: false).changeRoutine(
                       widget.routine, index, widget.routine.exercises[index]);
                 });
-
-                //Fixa en legit update
-                /*  Navigator.pop(context);
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => SpecRoutine(Routines(
-                            exercises: routine.exercises,
-                            id: routine.id,
-                            title: routine.title)))); */
               },
             ),
           );

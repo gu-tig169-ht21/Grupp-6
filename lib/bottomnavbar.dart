@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/spec_routine.dart';
 import 'my_routines.dart';
-import 'api_routine_model.dart';
-import 'model.dart';
-import 'package:provider/provider.dart';
-
 import 'main.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -36,8 +31,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
           _routinesItem(),
         ],
         currentIndex: _selectedIndex,
-
-        //Fixa så färgen byts
         onTap: (int index) {
           if (mounted) {
             setState(() {
@@ -81,7 +74,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
 
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyRoutines()));
+        context, MaterialPageRoute(builder: (context) => const MyRoutines()));
   }
 
   _navigateToExercises(context) {

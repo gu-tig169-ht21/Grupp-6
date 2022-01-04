@@ -1,13 +1,8 @@
 import 'package:my_first_app/add_exer_to_routine.dart';
-import 'package:my_first_app/my_routines.dart';
-
-import 'apiModel.dart';
+import 'api_model.dart';
 import 'exercise_info.dart';
-import 'main.dart';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'model.dart';
 
 // ignore: must_be_immutable
@@ -25,12 +20,13 @@ class ExerciseListView extends StatelessWidget {
           ))
         : ListView(
             shrinkWrap: true,
-            physics: ClampingScrollPhysics(),
-            children:
-                list.map((exer) => _buildExerciseList(context, exer)).toList());
+            physics: const ClampingScrollPhysics(),
+            children: list
+                .map((exer) => _buildExerciseList(context: context, exer: exer))
+                .toList());
   }
 
-  Widget _buildExerciseList(context, Exer exer) => ListTile(
+  Widget _buildExerciseList({context, required Exer exer}) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(exer.name),
         subtitle: Text(exer.target),

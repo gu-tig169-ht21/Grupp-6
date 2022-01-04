@@ -1,49 +1,56 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'apiModel.dart';
+import 'api_model.dart';
 
 class ExerInfo extends StatelessWidget {
   final Exer exer;
 
-  ExerInfo(this.exer);
+  const ExerInfo(this.exer, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.deepOrange[300],
-        centerTitle: true,
-        title: Text(exer.name),
-      ),
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Image(image: NetworkImage(exer.gifUrl)),
-            Wrap(
-              alignment: WrapAlignment.end,
-              spacing: 10.0,
-              runSpacing: 20.0,
-              children: [
-                _infoBox(exer.target),
-                _infoBox2(exer.equipment),
-              ],
-            ),
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.deepOrange[300],
+          centerTitle: true,
+          title: Text(exer.name),
         ),
-      ),
-    );
+        body: _content());
   }
 
-  Widget _infoBox(target) {
+  Widget _content() {
+    return exer.gifUrl.isEmpty
+        ? Center(
+            child: CircularProgressIndicator(
+            color: Colors.pink[300],
+          ))
+        : Center(
+            child: Column(
+              children: <Widget>[
+                Image(image: NetworkImage(exer.gifUrl)),
+                const SizedBox(height: 10),
+                Wrap(
+                  alignment: WrapAlignment.end,
+                  spacing: 10.0,
+                  runSpacing: 20.0,
+                  children: [
+                    _infoBox(target: exer.target),
+                    _infoBox2(equipment: exer.equipment),
+                  ],
+                ),
+              ],
+            ),
+          );
+  }
+
+  Widget _infoBox({target}) {
     return Container(
         width: 200,
         height: 100,
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.pink[300],
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Column(
           children: [
@@ -69,15 +76,15 @@ class ExerInfo extends StatelessWidget {
         ));
   }
 
-  Widget _infoBox2(equipment) {
+  Widget _infoBox2({equipment}) {
     return Container(
         width: 200,
         height: 100,
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: Colors.pink[300],
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          borderRadius: const BorderRadius.all(Radius.circular(8.0)),
         ),
         child: Column(
           children: [

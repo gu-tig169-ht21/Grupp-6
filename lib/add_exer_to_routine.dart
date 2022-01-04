@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:my_first_app/exercise_list_view.dart';
-import 'package:my_first_app/spec_routine.dart';
 import 'package:provider/provider.dart';
-
-import 'apiModel.dart';
+import 'api_model.dart';
 import 'api_routine_model.dart';
-import 'bottomnavbar.dart';
 import 'main.dart';
 import 'model.dart';
 
 class AddExer extends StatefulWidget {
   final Exer exer;
-  AddExer(this.exer);
+  const AddExer(this.exer, {Key? key}) : super(key: key);
 
   @override
   State<AddExer> createState() => _AddExerState();
@@ -110,7 +106,7 @@ class _AddExerState extends State<AddExer> {
   successfullyAddedDialog(BuildContext context) {
     // set up the button
     Widget okButton = TextButton(
-      child: Text("OK"),
+      child: const Text("OK"),
       onPressed: () {
         Navigator.pop(context);
         Navigator.pushReplacement(
@@ -138,12 +134,12 @@ class _AddExerState extends State<AddExer> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ElevatedButton(
-            child: Text('New Routine +'),
+            child: const Text('New Routine +'),
             style: ElevatedButton.styleFrom(
               primary: Colors.pink[300],
               onPrimary: Colors.white,
               padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 color: Colors.black,
                 fontSize: 20,
               ),

@@ -1,9 +1,9 @@
-// ignore_for_file: file_names
+// ignore: file_names
+// ignore_for_file: constant_identifier_names, unnecessary_string_interpolations
 import 'package:http/http.dart' as http;
 import 'package:my_first_app/api_routine_model.dart';
 import 'dart:convert';
-import 'apiModel.dart';
-import 'model.dart';
+import 'api_model.dart';
 
 //Api för exercises
 const API_URL =
@@ -22,8 +22,7 @@ class Api {
     }).toList();
   }
 
-  // gör en get
-
+  // Hämta rutiner
   static Future<List<Routines>> getRoutines() async {
     var response = await http.get(Uri.parse('$API_ROUTINES'));
     var json = jsonDecode(response.body);
@@ -33,13 +32,13 @@ class Api {
     }).toList();
   }
 
-  //Delete Routine
+  //Ta bort rutiner
   static Future deleteRoutine(int routinesId) async {
     await http.delete(Uri.parse('$API_ROUTINES$routinesId'));
-    //This function always return a empty {}.
+    //Funktionen returnerar alltid en tom {}.
   }
 
-//Ta bort en övning
+//Modifiera en rutin, tex ta brot en övning
   static Future changeRoutine(int routinesId, Routines updatedRoutine) async {
     //Put
     var jsonRoutine = updatedRoutine.toJson();
@@ -50,6 +49,7 @@ class Api {
         body: jsonEncode(jsonRoutine));
   }
 
+//Skapa en ny rutin
   static Future createRoutine(
       {required String title, required List<String> list}) async {
     return http.post(
