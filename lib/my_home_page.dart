@@ -1,27 +1,13 @@
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:my_first_app/main.dart';
 import 'package:provider/provider.dart';
+
+import 'api_model.dart';
+import 'bottomnavbar.dart';
+import 'exercise_list_view.dart';
 import 'model.dart';
-import 'my_home_page.dart';
-
-void main() {
-  var state = MyState();
-  state.initialize();
-  runApp(
-      ChangeNotifierProvider(create: (context) => state, child: const MyApp()));
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Exercises',
-      home: MyHomePage(title: 'Exercises'),
-    );
-  }
-}
-/*
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -104,4 +90,4 @@ class _MyHomePageState extends State<MyHomePage> {
     });
     return filterItems;
   }
-}*/
+}
