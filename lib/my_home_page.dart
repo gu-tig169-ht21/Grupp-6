@@ -30,6 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Consumer<MyState>(builder: (context, state, child) {
               return PopupMenuButton(
                 itemBuilder: (context) {
+                  //Filtreringsmeny
                   return _getPopUpItems(filterList: state.filterList);
                 },
                 onSelected: (dynamic value) {
@@ -47,14 +48,15 @@ class _MyHomePageState extends State<MyHomePage> {
           currentRoute: MyApp,
         ));
   }
-
+  //Skapar listvy över övningar från _filterList
   _listView({required state}) {
     final List<Exer> filteredExerList =
-        _filterList(exerList: state.list, filterBy: state.filterBy);
+        _filterList(exerList: state.exerList, filterBy: state.filterBy);
     return ListView.builder(
       shrinkWrap: true,
       itemCount: filteredExerList.isEmpty ? 1 : filteredExerList.length,
       itemBuilder: (context, index) {
+        //Laddningsikon
         if (filteredExerList.isEmpty) {
           return Center(
               child: CircularProgressIndicator(
@@ -65,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
-
+  //Filtrerar lista efter val (ex 'All')
   List<Exer> _filterList(
       {required List<Exer> exerList, required String filterBy}) {
     List<Exer> filteredExerList = [];
@@ -81,9 +83,12 @@ class _MyHomePageState extends State<MyHomePage> {
     return filteredExerList;
   }
 
+  //Skapar alternativ i filtreringsmeny
   _getPopUpItems({filterList}) {
     List<PopupMenuItem> filterItems = [];
+    //Lägger till en manuell popupitem för att visa alla övningar
     filterItems.add(const PopupMenuItem(child: Text("All"), value: "All"));
+    //Skapar popmenuitems från objekt i targetlistan från model
     filterList.forEach((target) {
       var item = PopupMenuItem(child: Text(target), value: target);
       filterItems.add(item);

@@ -7,30 +7,32 @@ import 'model.dart';
 
 // ignore: must_be_immutable
 class ExerciseListView extends StatelessWidget {
-  List<Exer> list;
+  List<Exer> exerList;
 
-  ExerciseListView(this.list, {Key? key}) : super(key: key);
+  ExerciseListView(this.exerList, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return list.isEmpty
+    /*return exerList.isEmpty
         ? Center(
             child: CircularProgressIndicator(
             color: Colors.pink[300],
           ))
-        : ListView(
+        : */ return 
+            ListView(
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
-            children: list
+            children: exerList
                 .map((exer) => _buildExerciseList(context: context, exer: exer))
                 .toList());
   }
-
+  //Skapar listrader
   Widget _buildExerciseList({context, required Exer exer}) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(exer.name),
         subtitle: Text(exer.target),
         onTap: () async {
+          //Väljer övning att visa info om
           var newInfo = await Navigator.push(
               context,
               MaterialPageRoute(
@@ -51,6 +53,7 @@ class ExerciseListView extends StatelessWidget {
             icon: const Icon(Icons.add_circle),
             color: Colors.pink[300],
             onPressed: () async {
+              //Väljer övning att lägga till i rutin
               var pickedExer = await Navigator.push(
                   context,
                   MaterialPageRoute(

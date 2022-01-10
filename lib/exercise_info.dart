@@ -35,6 +35,7 @@ class ExerInfo extends StatelessWidget {
                   children: [
                     _infoBox(target: exer.target),
                     _infoBox2(equipment: exer.equipment),
+                    //named argument
                   ],
                 ),
               ],
@@ -42,7 +43,7 @@ class ExerInfo extends StatelessWidget {
           );
   }
 
-  Widget _infoBox({target}) {
+  Widget _infoBox({target}) { //parameter
     return Container(
         width: 200,
         height: 100,
@@ -65,7 +66,7 @@ class ExerInfo extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              exer.target,
+              target,
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white,
@@ -99,7 +100,7 @@ class ExerInfo extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              exer.equipment,
+              equipment,
               style: const TextStyle(
                 fontSize: 18,
                 color: Colors.white,

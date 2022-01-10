@@ -10,19 +10,19 @@ class MyState extends ChangeNotifier {
   }
 
 //Hantera övningar
-  List<Exer> _list = [];
+  List<Exer> _exerList = [];
 
-  List<Exer> get list => _list;
+  List<Exer> get exerList => _exerList;
 
   Future getExerList() async {
-    List<Exer> list = await Api.getInfo();
-    _list = list;
-    getFilterList(_list);
+    List<Exer> exerList = await Api.getInfo();
+    _exerList = exerList;
+    getFilterList(_exerList);
     notifyListeners();
   }
 
   void showExerInfo(Exer exer) {
-    _list = list;
+    _exerList = exerList;
     notifyListeners();
   }
 
@@ -82,16 +82,18 @@ class MyState extends ChangeNotifier {
 
   String get filterBy => _filterBy;
 
-  void getFilterList(_list) {
+//Plockar 'targets' från exerList till en egen lista
+  void getFilterList(_exerList) {
     List<String> _getFilterList = [];
 
-    for (var i = 0; i < _list.length; i++) {
-      _getFilterList.add(_list[i].target);
+    for (var i = 0; i < _exerList.length; i++) {
+      _getFilterList.add(_exerList[i].target);
     }
     _filterList = _getFilterList.toSet().toList();
     notifyListeners();
   }
 
+  //Ändrar filtreringsvärdet
   void filter(String? filterBy) {
     if (filterBy != null) {
       _filterBy = filterBy;

@@ -36,33 +36,37 @@ class _AddExerState extends State<AddExer> {
           )
         ])));
   }
-
-  Widget _buildRoutineList(context, Routines routine) => ListTile(
-      contentPadding: const EdgeInsets.all(12),
-      title: Text(routine.title),
-      onTap: () {
-        Provider.of<MyState>(context, listen: false)
-            .addExerToRoutine(widget.exer, routine);
-        successfullyAddedDialog(context);
-      });
-
+  //Hämtar rutiner
   Widget _getRoutines() {
     return Consumer<MyState>(
         builder: (context, state, child) =>
             _getRoutineList(context, state.routineList));
   }
-
+  //Skapar en lista med rutiner
   Widget _getRoutineList(context, List<Routines> routineList) {
     return ListView(
         children: routineList
             .map<Widget>((routine) => _buildRoutineList(context, routine))
             .toList());
   }
+  //Skapar listrader
+  Widget _buildRoutineList(context, Routines routine) => ListTile(
+      contentPadding: const EdgeInsets.all(12),
+      title: Text(routine.title),
+      //Adderar övning till en vald rutin 
+      onTap: () {
+        Provider.of<MyState>(context, listen: false)
+            .addExerToRoutine(widget.exer, routine);
+            //Kallar på en alertdialog
+        successfullyAddedDialog(context);
+      });
 
+  //Kör funktionen som skapar dialogruta
   addNewRoutineDialog(BuildContext context) {
     Widget okButton = TextButton(
         child: const Text("CREATE"),
         onPressed: () {
+          //Hanterar användinput. Skapar en rutin om textfil inte är tom
         if (_textFieldController.value.text.isNotEmpty) {
           setState(() {
             Navigator.of(context).pop();
@@ -75,6 +79,7 @@ class _AddExerState extends State<AddExer> {
         },
         style: TextButton.styleFrom(primary: Colors.pink[300]));
 
+     //Skapar alertdialog
     AlertDialog alert = AlertDialog(
       title: const Text("Create new routine:"),
       content: TextFormField(
@@ -90,6 +95,7 @@ class _AddExerState extends State<AddExer> {
       ],
     );
 
+    //Visar dialogruta
     showDialog(
       context: context,
       useRootNavigator: false,
@@ -124,6 +130,7 @@ class _AddExerState extends State<AddExer> {
     );
   }
 
+  //Skapar en knapp för ny rutin
   Widget _addRoutine(context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -140,6 +147,7 @@ class _AddExerState extends State<AddExer> {
               ),
             ),
             onPressed: () async {
+              //Kallar på funktion för dialogruta
               addNewRoutineDialog(context);
             }),
       ],
