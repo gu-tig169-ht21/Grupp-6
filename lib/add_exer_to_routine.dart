@@ -63,12 +63,15 @@ class _AddExerState extends State<AddExer> {
     Widget okButton = TextButton(
         child: const Text("CREATE"),
         onPressed: () {
+        if (_textFieldController.value.text.isNotEmpty) {
           setState(() {
             Navigator.of(context).pop();
             Provider.of<MyState>(context, listen: false)
                 .createRoutine(_textFieldController.text, widget.exer.name);
+                 successfullyAddedDialog(context);
           });
-          successfullyAddedDialog(context);
+        }
+         
         },
         style: TextButton.styleFrom(primary: Colors.pink[300]));
 
@@ -77,13 +80,10 @@ class _AddExerState extends State<AddExer> {
       content: TextFormField(
         onChanged: (value) {},
         controller: _textFieldController,
-        decoration: const InputDecoration(hintText: "Name your new routine..."),
-        validator: (title) {
-          if (title == null || title.isEmpty) {
-            return 'Textfield is empty, please try again!';
-          }
-          return null;
-        },
+        decoration: const InputDecoration(hintText: "Name your new routine...",
+        errorText: 'Texfield can\'t be empty',
+),
+       
       ),
       actions: [
         okButton,
