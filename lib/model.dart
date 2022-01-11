@@ -21,11 +21,6 @@ class MyState extends ChangeNotifier {
     notifyListeners();
   }
 
-  void showExerInfo(Exer exer) {
-    _exerList = exerList;
-    notifyListeners();
-  }
-
 //Hantera rutiner
   List<Routines> _routineList = [];
 
@@ -33,11 +28,6 @@ class MyState extends ChangeNotifier {
 
   Future getRoutineList() async {
     List<Routines> routineList = await Api.getRoutines();
-    _routineList = routineList;
-    notifyListeners();
-  }
-
-  void showSpecRoutine(Routines routines) {
     _routineList = routineList;
     notifyListeners();
   }
@@ -51,10 +41,8 @@ class MyState extends ChangeNotifier {
   void createRoutine(String newRoutineTitle, String addExer) async {
     final List<String> newExerList = [];
     newExerList.add(addExer);
-
     await Api.createRoutine(title: newRoutineTitle, list: newExerList);
     await getRoutineList();
-
     notifyListeners();
   }
 

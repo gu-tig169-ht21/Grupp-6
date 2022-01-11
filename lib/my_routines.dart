@@ -24,13 +24,13 @@ class _MyRoutinesState extends State<MyRoutines> {
         body: _getRoutines(),
         bottomNavigationBar: const BottomNavBar(currentRoute: MyRoutines));
   }
-
+  //Hämtar rutinlista
   Widget _getRoutines() {
     return Consumer<MyState>(
         builder: (context, state, child) =>
             _getRoutineList(context: context, routineList: state.routineList));
   }
-
+  //Gör rutiner till en rutinlista/listview
   Widget _getRoutineList({context, required List<Routines> routineList}) {
     return routineList.isEmpty
         ? Center(
@@ -43,31 +43,28 @@ class _MyRoutinesState extends State<MyRoutines> {
                     _buildRoutineList(context: context, routines: routine))
                 .toList());
   }
-
+  //Strukturerar upp hur listan ska se ut
   Widget _buildRoutineList({context, required Routines routines}) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(routines.title),
-        onTap: () async {
-          var pickedRoutine = await Navigator.push(
+        onTap: ()  {
+          //Skickar med info till SpecRoutine
+           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => SpecRoutine(Routines(
                       exercises: routines.exercises,
                       id: routines.id,
                       title: routines.title))));
-          if (pickedRoutine != null) {
-            Provider.of<MyState>(context, listen: false)
-                .showSpecRoutine(pickedRoutine);
-          }
         },
         trailing: IconButton(
             icon: const Icon(Icons.delete),
             color: Colors.pink[300],
             onPressed: () {
-              setState(() {
+              //Ta bort en hel rutin
                 Provider.of<MyState>(context, listen: false)
                     .removeRoutine(routines);
-              });
+              
             }),
       );
 }

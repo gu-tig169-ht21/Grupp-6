@@ -18,12 +18,7 @@ class ExerInfo extends StatelessWidget {
   }
 
   Widget _content() {
-    return exer.gifUrl.isEmpty
-        ? Center(
-            child: CircularProgressIndicator(
-            color: Colors.pink[300],
-          ))
-        : Center(
+    return Center(
             child: Column(
               children: <Widget>[
                 Image(image: NetworkImage(exer.gifUrl)),

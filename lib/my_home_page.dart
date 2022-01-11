@@ -10,9 +10,9 @@ import 'exercise_list_view.dart';
 import 'model.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key} ) : super(key: key);
 
-  final String title;
+  //final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -25,7 +25,7 @@ class _MyHomePageState extends State<MyHomePage> {
         appBar: AppBar(
           backgroundColor: Colors.deepOrange[300],
           centerTitle: true,
-          title: Text(widget.title),
+          title: const Text('Exercises'),
           actions: [
             Consumer<MyState>(builder: (context, state, child) {
               return PopupMenuButton(
@@ -45,17 +45,17 @@ class _MyHomePageState extends State<MyHomePage> {
           return _listView(state: state);
         }),
         bottomNavigationBar: const BottomNavBar(
-          currentRoute: MyApp,
+          currentRoute: MyHomePage(),
         ));
   }
   //Skapar listvy över övningar från _filterList
   _listView({required state}) {
     final List<Exer> filteredExerList =
         _filterList(exerList: state.exerList, filterBy: state.filterBy);
-    return ListView.builder(
+    /*return ListView.builder(
       shrinkWrap: true,
-      itemCount: filteredExerList.isEmpty ? 1 : filteredExerList.length,
-      itemBuilder: (context, index) {
+      itemCount: filteredExerList.isEmpty ? 1 : 1, //filteredExerList.length,
+      itemBuilder: (context, index) {*/
         //Laddningsikon
         if (filteredExerList.isEmpty) {
           return Center(
@@ -64,8 +64,8 @@ class _MyHomePageState extends State<MyHomePage> {
           ));
         }
         return ExerciseListView(filteredExerList);
-      },
-    );
+      //},
+    //);
   }
   //Filtrerar lista efter val (ex 'All')
   List<Exer> _filterList(

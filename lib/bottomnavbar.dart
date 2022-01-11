@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_first_app/my_home_page.dart';
 import 'my_routines.dart';
 import 'main.dart';
 
@@ -22,10 +23,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
         backgroundColor: Colors.deepOrange[300],
         type: BottomNavigationBarType.fixed,
+        //Ändrar färg beroende på om man är på MyHomePage(title: title) eller inte
         selectedItemColor:
-            widget.currentRoute == MyApp ? Colors.white : Colors.brown,
+            widget.currentRoute == MyHomePage() ? Colors.white : Colors.brown,
         unselectedItemColor:
-            widget.currentRoute != MyApp ? Colors.white : Colors.brown,
+            widget.currentRoute != MyHomePage() ? Colors.white : Colors.brown,
         items: <BottomNavigationBarItem>[
           _exercisesItem(),
           _routinesItem(),
@@ -50,7 +52,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
 
   _exercisesItem() {
     return BottomNavigationBarItem(
-      icon: widget.currentRoute == MyApp
+      icon: widget.currentRoute == MyHomePage()
           ? const Icon(Icons.list, color: Colors.white)
           : const Icon(Icons.list, color: Colors.brown),
       label: 'Exercises',
@@ -85,6 +87,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
 
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => const MyApp()));
+        context, MaterialPageRoute(builder: (context) => MyHomePage()));
   }
 }

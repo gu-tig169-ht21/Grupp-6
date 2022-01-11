@@ -21,7 +21,7 @@ class _SpecRoutineState extends State<SpecRoutine> {
             title: Text(widget.routine.title)),
         body: _getExers(context));
   }
-
+  // Strukturerar upp lista med övningar 
   Widget _getExers(context) {
     return ListView.builder(
         itemCount: widget.routine.exercises.length,
@@ -33,6 +33,7 @@ class _SpecRoutineState extends State<SpecRoutine> {
               icon: const Icon(Icons.delete),
               color: Colors.pink[300],
               onPressed: () {
+                // Ta bort en övning från rutinlistan
                 setState(() {
                   Provider.of<MyState>(context, listen: false).changeRoutine(
                       widget.routine, index, widget.routine.exercises[index]);

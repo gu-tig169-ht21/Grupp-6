@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Exercises',
-      home: MyHomePage(title: 'Exercises'),
+      home: MyHomePage(),
     );
   }
 }
