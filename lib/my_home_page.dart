@@ -45,7 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
           return _listView(state: state);
         }),
         bottomNavigationBar: const BottomNavBar(
-          currentRoute: MyHomePage(),
+          currentRoute: MyHomePage
         ));
   }
   //Skapar listvy över övningar från _filterList

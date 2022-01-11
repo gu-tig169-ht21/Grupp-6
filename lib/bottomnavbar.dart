@@ -23,11 +23,11 @@ class _BottomNavBarState extends State<BottomNavBar> {
     return BottomNavigationBar(
         backgroundColor: Colors.deepOrange[300],
         type: BottomNavigationBarType.fixed,
-        //Ändrar färg beroende på om man är på MyHomePage(title: title) eller inte
+        //Ändrar textfärg beroende på om man är på MyHomePage eller inte
         selectedItemColor:
-            widget.currentRoute == MyHomePage() ? Colors.white : Colors.brown,
+            widget.currentRoute == MyHomePage ? Colors.white : Colors.brown,
         unselectedItemColor:
-            widget.currentRoute != MyHomePage() ? Colors.white : Colors.brown,
+            widget.currentRoute != MyHomePage ? Colors.white : Colors.brown,
         items: <BottomNavigationBarItem>[
           _exercisesItem(),
           _routinesItem(),
@@ -49,16 +49,16 @@ class _BottomNavBarState extends State<BottomNavBar> {
           }
         });
   }
-
+  //Skapar bottomnavbaritem för exercises
   _exercisesItem() {
     return BottomNavigationBarItem(
-      icon: widget.currentRoute == MyHomePage()
+      icon: widget.currentRoute == MyHomePage
           ? const Icon(Icons.list, color: Colors.white)
           : const Icon(Icons.list, color: Colors.brown),
       label: 'Exercises',
     );
   }
-
+   //Skapar routines för exercises
   _routinesItem() {
     return BottomNavigationBarItem(
       icon: widget.currentRoute == MyRoutines
@@ -87,6 +87,6 @@ class _BottomNavBarState extends State<BottomNavBar> {
     }
 
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => MyHomePage()));
+        context, MaterialPageRoute(builder: (context) => const MyHomePage()));
   }
 }
