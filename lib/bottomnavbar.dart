@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_first_app/Exercises/my_home_page.dart';
-import './Rutiner/my_routines.dart';
-import 'main.dart';
+import './Routines/my_routines.dart';
 
 class BottomNavBar extends StatefulWidget {
   final dynamic currentRoute;
