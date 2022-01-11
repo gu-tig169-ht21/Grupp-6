@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/main.dart';
@@ -10,9 +9,7 @@ import 'exercise_list_view.dart';
 import 'model.dart';
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key} ) : super(key: key);
-
-  //final String title;
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -44,29 +41,23 @@ class _MyHomePageState extends State<MyHomePage> {
         body: Consumer<MyState>(builder: (context, state, child) {
           return _listView(state: state);
         }),
-        bottomNavigationBar: const BottomNavBar(
-          currentRoute: MyHomePage
-        ));
+        bottomNavigationBar: const BottomNavBar(currentRoute: MyHomePage));
   }
+
   //Skapar listvy över övningar från _filterList
   _listView({required state}) {
     final List<Exer> filteredExerList =
         _filterList(exerList: state.exerList, filterBy: state.filterBy);
-    /*return ListView.builder(
-      shrinkWrap: true,
-      itemCount: filteredExerList.isEmpty ? 1 : 1, //filteredExerList.length,
-      itemBuilder: (context, index) {*/
-        //Laddningsikon
-        if (filteredExerList.isEmpty) {
-          return Center(
-              child: CircularProgressIndicator(
-            color: Colors.pink[300],
-          ));
-        }
-        return ExerciseListView(filteredExerList);
-      //},
-    //);
+    //Laddningsikon
+    if (filteredExerList.isEmpty) {
+      return Center(
+          child: CircularProgressIndicator(
+        color: Colors.pink[300],
+      ));
+    }
+    return ExerciseListView(filteredExerList);
   }
+
   //Filtrerar lista efter val (ex 'All')
   List<Exer> _filterList(
       {required List<Exer> exerList, required String filterBy}) {

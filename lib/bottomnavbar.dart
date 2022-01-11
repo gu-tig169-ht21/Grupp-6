@@ -49,6 +49,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
           }
         });
   }
+
   //Skapar bottomnavbaritem för exercises
   _exercisesItem() {
     return BottomNavigationBarItem(
@@ -58,7 +59,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
       label: 'Exercises',
     );
   }
-   //Skapar routines för exercises
+
+  //Skapar routines för exercises
   _routinesItem() {
     return BottomNavigationBarItem(
       icon: widget.currentRoute == MyRoutines
@@ -71,7 +73,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   _navigateToRoutine(context) {
     //Kollar om vi kan popa.
     if (Navigator.canPop(context)) {
-      ///Om vi kan går vi tillbaka till föregående vy.
+      ///Om vi kan popar vi tillbaka vy
       Navigator.pop(context);
     }
 
@@ -82,7 +84,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   _navigateToExercises(context) {
     //Kollar om vi kan popa.
     if (Navigator.canPop(context)) {
-      ///Om vi kan går vi tillbaka till föregående vy.
+      ///Om vi kan popar vi tillbaka vy
       Navigator.pop(context);
     }
 

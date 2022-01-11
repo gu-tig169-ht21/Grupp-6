@@ -21,7 +21,8 @@ class _SpecRoutineState extends State<SpecRoutine> {
             title: Text(widget.routine.title)),
         body: _getExers(context));
   }
-  // Strukturerar upp lista med övningar 
+
+  // Strukturerar upp lista med övningar
   Widget _getExers(context) {
     return ListView.builder(
         itemCount: widget.routine.exercises.length,
