@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:my_first_app/api_routine_model.dart';
-import 'api_model.dart';
-import 'api.dart';
+import 'package:my_first_app/API/api_routine_model.dart';
+import 'API/api_model.dart';
+import 'API/api.dart';
 
 class MyState extends ChangeNotifier {
   Future initialize() async {

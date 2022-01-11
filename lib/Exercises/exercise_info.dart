@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'api_model.dart';
+import '../API/api_model.dart';
 
 class ExerInfo extends StatelessWidget {
   final Exer exer;
@@ -19,26 +19,27 @@ class ExerInfo extends StatelessWidget {
 
   Widget _content() {
     return Center(
-            child: Column(
-              children: <Widget>[
-                Image(image: NetworkImage(exer.gifUrl)),
-                const SizedBox(height: 10),
-                Wrap(
-                  alignment: WrapAlignment.end,
-                  spacing: 10.0,
-                  runSpacing: 20.0,
-                  children: [
-                    _infoBox(target: exer.target),
-                    _infoBox2(equipment: exer.equipment),
-                    //named argument
-                  ],
-                ),
-              ],
-            ),
-          );
+      child: Column(
+        children: <Widget>[
+          Image(image: NetworkImage(exer.gifUrl)),
+          const SizedBox(height: 10),
+          Wrap(
+            alignment: WrapAlignment.end,
+            spacing: 10.0,
+            runSpacing: 20.0,
+            children: [
+              _infoBox(target: exer.target),
+              _infoBox2(equipment: exer.equipment),
+              //named argument
+            ],
+          ),
+        ],
+      ),
+    );
   }
 
-  Widget _infoBox({target}) { //parameter
+  Widget _infoBox({target}) {
+    //parameter
     return Container(
         width: 200,
         height: 100,

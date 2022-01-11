@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_first_app/main.dart';
 import 'package:provider/provider.dart';
 
-import 'api_model.dart';
-import 'bottomnavbar.dart';
+import '../API/api_model.dart';
+import '../bottomnavbar.dart';
 import 'exercise_list_view.dart';
-import 'model.dart';
+import '../model.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

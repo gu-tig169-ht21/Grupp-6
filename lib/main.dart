@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'model.dart';
-import 'my_home_page.dart';
+import './Exercises/my_home_page.dart';
 
 void main() {
   var state = MyState();

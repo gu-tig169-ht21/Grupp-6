@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/bottomnavbar.dart';
-import 'package:my_first_app/spec_routine.dart';
+import 'package:my_first_app/Rutiner/spec_routine.dart';
 import 'package:provider/provider.dart';
-import 'model.dart';
-import 'api_routine_model.dart';
+import '../model.dart';
+import '../API/api_routine_model.dart';
 
 class MyRoutines extends StatefulWidget {
   const MyRoutines({Key? key}) : super(key: key);
@@ -24,12 +24,14 @@ class _MyRoutinesState extends State<MyRoutines> {
         body: _getRoutines(),
         bottomNavigationBar: const BottomNavBar(currentRoute: MyRoutines));
   }
+
   //Hämtar rutinlista
   Widget _getRoutines() {
     return Consumer<MyState>(
         builder: (context, state, child) =>
             _getRoutineList(context: context, routineList: state.routineList));
   }
+
   //Gör rutiner till en rutinlista/listview
   Widget _getRoutineList({context, required List<Routines> routineList}) {
     return routineList.isEmpty
@@ -43,13 +45,14 @@ class _MyRoutinesState extends State<MyRoutines> {
                     _buildRoutineList(context: context, routines: routine))
                 .toList());
   }
+
   //Strukturerar upp hur listan ska se ut
   Widget _buildRoutineList({context, required Routines routines}) => ListTile(
         contentPadding: const EdgeInsets.all(12),
         title: Text(routines.title),
-        onTap: ()  {
+        onTap: () {
           //Skickar med info till SpecRoutine
-           Navigator.push(
+          Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => SpecRoutine(Routines(
@@ -62,9 +65,8 @@ class _MyRoutinesState extends State<MyRoutines> {
             color: Colors.pink[300],
             onPressed: () {
               //Ta bort en hel rutin
-                Provider.of<MyState>(context, listen: false)
-                    .removeRoutine(routines);
-              
+              Provider.of<MyState>(context, listen: false)
+                  .removeRoutine(routines);
             }),
       );
 }

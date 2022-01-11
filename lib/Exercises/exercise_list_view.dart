@@ -1,5 +1,5 @@
-import 'package:my_first_app/add_exer_to_routine.dart';
-import 'api_model.dart';
+import 'package:my_first_app/Exercises/add_exer_to_routine.dart';
+import '../API/api_model.dart';
 import 'exercise_info.dart';
 import 'package:flutter/material.dart';
 

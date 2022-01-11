@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'api_model.dart';
-import 'api_routine_model.dart';
-import 'main.dart';
-import 'model.dart';
+import '../API/api_model.dart';
+import '../API/api_routine_model.dart';
+import '../main.dart';
+import '../model.dart';
 
 class AddExer extends StatefulWidget {
   final Exer exer;
@@ -36,12 +36,14 @@ class _AddExerState extends State<AddExer> {
           )
         ])));
   }
+
   //Hämtar rutiner
   Widget _getRoutines() {
     return Consumer<MyState>(
         builder: (context, state, child) =>
             _getRoutineList(context, state.routineList));
   }
+
   //Skapar en lista med rutiner
   Widget _getRoutineList(context, List<Routines> routineList) {
     return ListView(
@@ -49,15 +51,16 @@ class _AddExerState extends State<AddExer> {
             .map<Widget>((routine) => _buildRoutineList(context, routine))
             .toList());
   }
+
   //Skapar listrader
   Widget _buildRoutineList(context, Routines routine) => ListTile(
       contentPadding: const EdgeInsets.all(12),
       title: Text(routine.title),
-      //Adderar övning till en vald rutin 
+      //Adderar övning till en vald rutin
       onTap: () {
         Provider.of<MyState>(context, listen: false)
             .addExerToRoutine(widget.exer, routine);
-            //Kallar på en alertdialog
+        //Kallar på en alertdialog
         successfullyAddedDialog(context);
       });
 
@@ -67,28 +70,27 @@ class _AddExerState extends State<AddExer> {
         child: const Text("CREATE"),
         onPressed: () {
           //Hanterar användinput. Skapar en rutin om textfil inte är tom
-        if (_textFieldController.value.text.isNotEmpty) {
-          setState(() {
-            Navigator.of(context).pop();
-            Provider.of<MyState>(context, listen: false)
-                .createRoutine(_textFieldController.text, widget.exer.name);
-                 successfullyAddedDialog(context);
-          });
-        }
-         
+          if (_textFieldController.value.text.isNotEmpty) {
+            setState(() {
+              Navigator.of(context).pop();
+              Provider.of<MyState>(context, listen: false)
+                  .createRoutine(_textFieldController.text, widget.exer.name);
+              successfullyAddedDialog(context);
+            });
+          }
         },
         style: TextButton.styleFrom(primary: Colors.pink[300]));
 
-     //Skapar alertdialog
+    //Skapar alertdialog
     AlertDialog alert = AlertDialog(
       title: const Text("Create new routine:"),
       content: TextFormField(
         onChanged: (value) {},
         controller: _textFieldController,
-        decoration: const InputDecoration(hintText: "Name your new routine...",
-        errorText: 'Texfield can\'t be empty',
-),
-       
+        decoration: const InputDecoration(
+          hintText: "Name your new routine...",
+          errorText: 'Texfield can\'t be empty',
+        ),
       ),
       actions: [
         okButton,

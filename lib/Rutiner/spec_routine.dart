@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:my_first_app/api_routine_model.dart';
+import 'package:my_first_app/API/api_routine_model.dart';
 import 'package:provider/provider.dart';
-import 'model.dart';
+import '../model.dart';
 
 class SpecRoutine extends StatefulWidget {
   final Routines routine;
