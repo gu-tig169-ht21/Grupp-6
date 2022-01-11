@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:my_first_app/bottomnavbar.dart';
-import 'package:my_first_app/Rutiner/spec_routine.dart';
+import 'package:my_first_app/Routines/spec_routine.dart';
 import 'package:provider/provider.dart';
 import '../model.dart';
 import '../API/api_routine_model.dart';
