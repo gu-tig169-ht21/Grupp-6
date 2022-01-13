@@ -65,7 +65,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       icon: widget.currentRoute == MyRoutines
           ? const Icon(Icons.fitness_center_rounded, color: Colors.white)
           : const Icon(Icons.fitness_center_rounded, color: Colors.brown),
-      label: 'My Routine',
+      label: 'My Routines',
     );
   }
 
